@@ -1,9 +1,14 @@
+import ResponsiveOverlay from "./ResponsiveOverlay";
+
 function App() {
   return (
-    <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-8 lg:flex-row">
-      <ProfileCard />
-      <section className="min-h-[200vh] min-w-0 flex-1 bg-blue-200" />
-    </main>
+    <>
+      {import.meta.env.DEV && <ResponsiveOverlay />}
+      <main className="mx-auto flex w-full max-w-6xl flex-col gap-8 px-6 py-8 lg:flex-row">
+        <ProfileCard />
+        <section className="min-h-[200vh] min-w-0 flex-1 bg-blue-200" />
+      </main>
+    </>
   );
 }
 
