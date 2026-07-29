@@ -64,7 +64,7 @@ function CaseStudyPanel({
         }`}
       >
         <header className="sticky top-0 z-10 bg-white">
-          <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-8 py-8">
+          <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-8 py-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
             <h1>{activeProject}</h1>
             <button
               type="button"
@@ -77,7 +77,7 @@ function CaseStudyPanel({
           </div>
         </header>
 
-        <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-8 pb-8">
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-8 pb-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
           <div className="space-y-4">
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
