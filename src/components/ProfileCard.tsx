@@ -1,3 +1,5 @@
+import coverImage from "../assets/cover.png";
+import profileImage from "../assets/profile.png";
 import { FaLinkedin } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa6";
 import { TbDownload } from "react-icons/tb";
@@ -5,13 +7,15 @@ import { TbMailFilled } from "react-icons/tb";
 
 function ProfileCard() {
   return (
-    <aside className="grid h-130 w-full grid-cols-1 grid-rows-2 gap-0 self-start min-[785px]:relative min-[785px]:block min-[785px]:h-auto min-[785px]:overflow-hidden min-[785px]:bg-blue-200 min-[1209px]:grid min-[1209px]:h-130 min-[1209px]:bg-transparent min-[1209px]:sticky min-[1209px]:top-8 min-[1209px]:w-82 min-[1209px]:shrink-0 min-[1209px]:grid-cols-1 min-[1209px]:grid-rows-2">
-      <div
+    <aside className="flex h-130 w-full flex-col justify-between gap-0 self-start overflow-hidden rounded-lg border border-card-border bg-card min-[785px]:relative min-[785px]:block min-[785px]:h-auto min-[1209px]:flex min-[1209px]:h-130 min-[1209px]:sticky min-[1209px]:top-8 min-[1209px]:w-82 min-[1209px]:shrink-0 min-[1209px]:flex-col min-[1209px]:justify-between">
+      <img
+        src={coverImage}
+        alt=""
         aria-hidden="true"
-        className="absolute inset-x-0 top-0 hidden h-30 bg-red-200 min-[785px]:block min-[1209px]:hidden"
+        className="absolute inset-x-0 top-0 hidden h-30 w-full object-cover object-bottom min-[785px]:block min-[1209px]:hidden"
       />
-      <ProfileIdentity />
-      <ProfileActions />
+      <Profile />
+      <Socials />
     </aside>
   );
 }
@@ -20,12 +24,13 @@ export default ProfileCard;
 
 // === Components ===
 
-function ProfileIdentity() {
+function Profile() {
   return (
-    <div className="flex flex-col items-center justify-center bg-red-200 p-6 text-center min-[785px]:relative min-[785px]:z-10 min-[785px]:items-start min-[785px]:justify-start min-[785px]:bg-transparent min-[785px]:text-left min-[1209px]:static min-[1209px]:items-center min-[1209px]:justify-center min-[1209px]:bg-red-200 min-[1209px]:text-center">
-      <div
-        aria-hidden="true"
-        className="size-32 rounded-full bg-gray-300 mb-4 border-6 border-white"
+    <div className="flex flex-col items-center justify-start p-6 text-center min-[785px]:relative min-[785px]:z-10 min-[785px]:items-start min-[785px]:justify-start min-[785px]:text-left min-[1209px]:static min-[1209px]:items-center min-[1209px]:justify-start min-[1209px]:text-center">
+      <img
+        src={profileImage}
+        alt="Ace Lowder"
+        className="mb-2 size-48 rounded-full border-6 border-card object-cover"
       />
       <h1>Ace Lowder</h1>
       <p>Software Engineer</p>
@@ -33,9 +38,9 @@ function ProfileIdentity() {
   );
 }
 
-function ProfileActions() {
+function Socials() {
   return (
-    <div className="flex flex-col items-center justify-end gap-6 bg-blue-200 p-6 min-[785px]:absolute min-[785px]:bottom-6 min-[785px]:right-6 min-[785px]:z-10 min-[785px]:flex-row min-[785px]:items-center min-[785px]:gap-6 min-[785px]:bg-transparent min-[785px]:p-0 min-[1209px]:static min-[1209px]:flex-col min-[1209px]:items-center min-[1209px]:justify-end min-[1209px]:gap-6 min-[1209px]:bg-blue-200 min-[1209px]:p-6">
+    <div className="flex flex-col items-center justify-center gap-6 bg-transparent p-6 min-[785px]:absolute min-[785px]:bottom-6 min-[785px]:right-6 min-[785px]:z-10 min-[785px]:flex-row min-[785px]:items-center min-[785px]:gap-6 min-[785px]:p-0 min-[1209px]:static min-[1209px]:z-10 min-[1209px]:flex-col min-[1209px]:items-center min-[1209px]:justify-center min-[1209px]:gap-6 min-[1209px]:p-6">
       <nav aria-label="Social links" className="flex gap-4">
         <a
           href="https://github.com/ace-lowder"
