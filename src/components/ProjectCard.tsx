@@ -17,7 +17,7 @@ function ProjectCard({
   return (
     <button
       type="button"
-      className="group relative aspect-19/16 cursor-pointer overflow-hidden bg-green-200 text-left"
+      className="group relative aspect-19/16 cursor-pointer overflow-hidden bg-green-200 text-left rounded-md"
       onClick={onOpen}
     >
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-15.5 bg-linear-to-t from-black/50 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100" />
