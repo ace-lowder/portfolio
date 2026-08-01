@@ -1,7 +1,8 @@
 import { useState } from "react";
 import CaseStudyPanel from "./components/CaseStudyPanel";
 import ProfileCard from "./components/ProfileCard";
-import ProjectCard, { PROJECT_NAMES, type ProjectName } from "./components/ProjectCard";
+import ProjectCard from "./components/ProjectCard";
+import { PROJECT_NAMES, type ProjectName } from "./content/projects";
 import ResponsiveOverlay from "./components/ResponsiveOverlay";
 
 function App() {
