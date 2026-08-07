@@ -2,6 +2,10 @@ import { useEffect } from "react";
 import { FiX } from "react-icons/fi";
 import ProjectCard from "./ProjectCard";
 import {
+  type CaseStudyParagraph,
+  type CaseStudySection as CaseStudySectionData,
+} from "../content/caseStudy";
+import {
   PROJECT_NAMES,
   PROJECTS_BY_NAME,
   type ProjectName,
@@ -20,6 +24,12 @@ function CaseStudyPanel({
   const activeProjectDetails = activeProject
     ? PROJECTS_BY_NAME[activeProject]
     : null;
+  const caseStudy = activeProjectDetails?.caseStudy;
+  const otherProjectNames = PROJECT_NAMES.filter(
+    (projectName) =>
+      projectName !== activeProject &&
+      PROJECTS_BY_NAME[projectName].caseStudy !== null,
+  );
 
   useEffect(() => {
     if (!open) return;
@@ -64,6 +74,7 @@ function CaseStudyPanel({
         role="dialog"
         aria-modal="true"
         aria-hidden={!open}
+        inert={!open}
         aria-label={
           open
             ? `${activeProjectDetails?.name ?? activeProject} case study`
@@ -93,39 +104,33 @@ function CaseStudyPanel({
         </header>
 
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-8 pb-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
-          {activeProjectDetails?.caseStudyCoverImage ? (
+          {caseStudy?.coverImage ? (
             <img
-              src={activeProjectDetails.caseStudyCoverImage.src}
-              alt={activeProjectDetails.caseStudyCoverImage.alt}
+              src={caseStudy.coverImage.src}
+              alt={caseStudy.coverImage.alt}
               className="block w-full rounded-md"
             />
           ) : null}
-          <div className="space-y-4">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non
-              risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing
-              nec, ultricies sed, dolor.
-            </p>
-            <p>
-              Cras elementum ultrices diam. Maecenas ligula massa, varius a,
-              semper congue, euismod non, mi. Proin porttitor, orci nec nonummy
-              molestie, enim est eleifend mi, non fermentum diam nisl sit amet
-              erat.
-            </p>
-          </div>
+          {caseStudy ? (
+            caseStudy.sections.map((section) => (
+              <CaseStudySection key={section.id} section={section} />
+            ))
+          ) : null}
 
-          <div className="hidden min-[785px]:block">
-            <h2 className="mb-8">More projects</h2>
-            <section className="grid grid-cols-2 gap-8 min-[1209px]:grid-cols-4">
-              {PROJECT_NAMES.map((projectName) => (
-                <ProjectCard
-                  key={projectName}
-                  projectName={projectName}
-                  onOpen={() => onOpenProject(projectName)}
-                />
-              ))}
-            </section>
-          </div>
+          {otherProjectNames.length > 0 ? (
+            <div className="hidden min-[785px]:block">
+              <h2 className="mb-8">More projects</h2>
+              <section className="grid grid-cols-2 gap-8 min-[1209px]:grid-cols-4">
+                {otherProjectNames.map((projectName) => (
+                  <ProjectCard
+                    key={projectName}
+                    projectName={projectName}
+                    onOpen={() => onOpenProject(projectName)}
+                  />
+                ))}
+              </section>
+            </div>
+          ) : null}
         </div>
       </section>
     </>
@@ -133,3 +138,99 @@ function CaseStudyPanel({
 }
 
 export default CaseStudyPanel;
+
+function CaseStudySection({
+  section,
+}: {
+  section: CaseStudySectionData;
+}) {
+  switch (section.type) {
+    case "split":
+      return (
+        <section className="grid gap-8 min-[785px]:grid-cols-[7fr_3fr]">
+          {section.columns.map((column) => (
+            <div key={column.heading}>
+              <h2 className="mb-4">{column.heading}</h2>
+              {column.paragraphs.map((paragraph, index) => (
+                <CaseStudyParagraph
+                  key={`${column.heading}-${index}`}
+                  paragraph={paragraph}
+                />
+              ))}
+            </div>
+          ))}
+        </section>
+      );
+    case "content":
+      return (
+        <section className="space-y-4">
+          <h2>{section.heading}</h2>
+          {section.paragraphs.map((paragraph, index) => (
+            <CaseStudyParagraph
+              key={`${section.id}-paragraph-${index}`}
+              paragraph={paragraph}
+            />
+          ))}
+          {section.bullets.length > 0 ? (
+            <ul className="list-disc space-y-2 pl-6">
+              {section.bullets.map((bullet) => (
+                <li key={bullet}>{bullet}</li>
+              ))}
+            </ul>
+          ) : null}
+          {section.image ? (
+            <img
+              src={section.image.src}
+              alt={section.image.alt}
+              className="block w-full rounded-md"
+            />
+          ) : null}
+        </section>
+      );
+    case "details":
+      return (
+        <section className="space-y-4">
+          <h2>{section.heading}</h2>
+          <dl className="grid gap-8 min-[1209px]:grid-cols-3">
+            {section.items.map((item) => (
+              <div key={item.label} className="space-y-1">
+                <dt className="font-bold">{item.label}</dt>
+                <dd>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="font-medium underline underline-offset-4"
+                    >
+                      {item.value}
+                    </a>
+                  ) : (
+                    item.value
+                  )}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+      );
+  }
+}
+
+function CaseStudyParagraph({
+  paragraph,
+}: {
+  paragraph: CaseStudyParagraph;
+}) {
+  return (
+    <p>
+      {paragraph.segments.map((segment, index) =>
+        segment.emphasis === "strong" ? (
+          <strong key={`${index}-${segment.text}`}>{segment.text}</strong>
+        ) : (
+          <span key={`${index}-${segment.text}`}>{segment.text}</span>
+        ),
+      )}
+    </p>
+  );
+}

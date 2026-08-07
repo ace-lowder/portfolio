@@ -1,5 +1,6 @@
 import journalOfAcademicInquiryCardImage from "../assets/case-studies/journal-of-academic-inquiry/card.png";
-import journalOfAcademicInquiryCoverImage from "../assets/case-studies/journal-of-academic-inquiry/cover.png";
+import { type CaseStudy, type ProjectImage } from "./caseStudy";
+import { journalOfAcademicInquiryCaseStudy } from "./case-studies/journalOfAcademicInquiry";
 
 export const PROJECT_NAMES = [
   "UpdateTags",
@@ -10,16 +11,11 @@ export const PROJECT_NAMES = [
 
 export type ProjectName = (typeof PROJECT_NAMES)[number];
 
-type ProjectImage = {
-  src: string;
-  alt: string;
-};
-
 type ProjectMetadata = {
   name: ProjectName;
   subtitle: string;
   cardImage: ProjectImage | null;
-  caseStudyCoverImage: ProjectImage | null;
+  caseStudy: CaseStudy | null;
 };
 
 export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
@@ -27,13 +23,13 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
     name: "UpdateTags",
     subtitle: "Project subtitle coming soon.",
     cardImage: null,
-    caseStudyCoverImage: null,
+    caseStudy: null,
   },
   DIFF: {
     name: "DIFF",
     subtitle: "Project subtitle coming soon.",
     cardImage: null,
-    caseStudyCoverImage: null,
+    caseStudy: null,
   },
   "Journal of Academic Inquiry": {
     name: "Journal of Academic Inquiry",
@@ -43,15 +39,12 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
       src: journalOfAcademicInquiryCardImage,
       alt: "Journal of Academic Inquiry website shown on a laptop at a study desk.",
     },
-    caseStudyCoverImage: {
-      src: journalOfAcademicInquiryCoverImage,
-      alt: "Journal of Academic Inquiry website shown across desktop and mobile screens.",
-    },
+    caseStudy: journalOfAcademicInquiryCaseStudy,
   },
   "Instant Market Value": {
     name: "Instant Market Value",
     subtitle: "Project subtitle coming soon.",
     cardImage: null,
-    caseStudyCoverImage: null,
+    caseStudy: null,
   },
 };
