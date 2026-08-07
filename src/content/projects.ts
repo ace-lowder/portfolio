@@ -1,12 +1,14 @@
-import journalOfAcademicInquiryCardImage from "../assets/case-studies/journal-of-academic-inquiry/card.png";
+import diffCardImage from "../assets/case-studies/diff/cover-placeholder.png";
 import instantMarketValueCardImage from "../assets/case-studies/instant-market-value/cover-placeholder.png";
+import journalOfAcademicInquiryCardImage from "../assets/case-studies/journal-of-academic-inquiry/card.png";
 import { type CaseStudy, type ProjectImage } from "./caseStudy";
+import { diffCaseStudy } from "./case-studies/diff";
 import { instantMarketValueCaseStudy } from "./case-studies/instantMarketValue";
 import { journalOfAcademicInquiryCaseStudy } from "./case-studies/journalOfAcademicInquiry";
 
 export const PROJECT_NAMES = [
   "UpdateTags",
-  "DIFF",
+  "Diff",
   "Journal of Academic Inquiry",
   "Instant Market Value",
 ] as const;
@@ -27,11 +29,15 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
     cardImage: null,
     caseStudy: null,
   },
-  DIFF: {
-    name: "DIFF",
-    subtitle: "Project subtitle coming soon.",
-    cardImage: null,
-    caseStudy: null,
+  Diff: {
+    name: "Diff",
+    subtitle:
+      "A local-first writing editor for comparing a rough draft with its revision",
+    cardImage: {
+      src: diffCardImage,
+      alt: "Two-pane writing editor comparing a draft with its revision on a laptop.",
+    },
+    caseStudy: diffCaseStudy,
   },
   "Journal of Academic Inquiry": {
     name: "Journal of Academic Inquiry",

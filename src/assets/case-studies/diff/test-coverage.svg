@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 620" role="img">
+  <rect width="1440" height="620" fill="#202523"/>
+  <text x="720" y="92" fill="#fff" font-family="Arial, sans-serif" font-size="42" font-weight="700" text-anchor="middle">Editor behavior under test</text>
+  <g fill="#fff">
+    <rect x="70" y="150" width="404" height="360" rx="24"/>
+    <rect x="518" y="150" width="404" height="360" rx="24"/>
+    <rect x="966" y="150" width="404" height="360" rx="24"/>
+  </g>
+  <g fill="#202523" font-family="Arial, sans-serif" text-anchor="middle">
+    <g font-size="78" font-weight="700">
+      <text x="272" y="315">26</text>
+      <text x="720" y="315">455</text>
+      <text x="1168" y="315">0</text>
+    </g>
+    <g font-size="27" font-weight="700">
+      <text x="272" y="378">test files</text>
+      <text x="720" y="378">passing tests</text>
+      <text x="1168" y="378">server accounts</text>
+    </g>
+    <g font-size="20" fill="#53605a">
+      <text x="272" y="420">diff, editor, clipboard,</text>
+      <text x="272" y="450">storage, and layout</text>
+      <text x="720" y="420">verified in the current</text>
+      <text x="720" y="450">repository audit</text>
+      <text x="1168" y="420">drafts stay in local</text>
+      <text x="1168" y="450">browser storage</text>
+    </g>
+  </g>
+</svg>
