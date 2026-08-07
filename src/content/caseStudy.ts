@@ -44,3 +44,19 @@ export type CaseStudy = {
   coverImage: ProjectImage | null;
   sections: CaseStudySection[];
 };
+
+export const normal = (text: string): CaseStudyTextSegment => ({
+  text,
+  emphasis: "normal",
+});
+
+export const strong = (text: string): CaseStudyTextSegment => ({
+  text,
+  emphasis: "strong",
+});
+
+export const paragraph = (
+  ...segments: CaseStudyTextSegment[]
+): CaseStudyParagraph => ({
+  segments,
+});

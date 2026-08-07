@@ -2,26 +2,11 @@ import diffCoverImage from "../../assets/case-studies/diff/cover-placeholder.png
 import diffEditorFlowImage from "../../assets/case-studies/diff/editor-flow.svg";
 import diffTestCoverageImage from "../../assets/case-studies/diff/test-coverage.svg";
 import {
+  normal,
+  paragraph,
+  strong,
   type CaseStudy,
-  type CaseStudyParagraph,
-  type CaseStudyTextSegment,
 } from "../caseStudy";
-
-const normal = (text: string): CaseStudyTextSegment => ({
-  text,
-  emphasis: "normal",
-});
-
-const strong = (text: string): CaseStudyTextSegment => ({
-  text,
-  emphasis: "strong",
-});
-
-const paragraph = (
-  ...segments: CaseStudyTextSegment[]
-): CaseStudyParagraph => ({
-  segments,
-});
 
 export const diffCaseStudy: CaseStudy = {
   coverImage: {

@@ -2,26 +2,11 @@ import updateTagsCoverImage from "../../assets/case-studies/update-tags/cover-pl
 import updateTagsGenerationFlowImage from "../../assets/case-studies/update-tags/generation-flow.svg";
 import updateTagsQualityBenchmarkImage from "../../assets/case-studies/update-tags/quality-benchmark.svg";
 import {
+  normal,
+  paragraph,
+  strong,
   type CaseStudy,
-  type CaseStudyParagraph,
-  type CaseStudyTextSegment,
 } from "../caseStudy";
-
-const normal = (text: string): CaseStudyTextSegment => ({
-  text,
-  emphasis: "normal",
-});
-
-const strong = (text: string): CaseStudyTextSegment => ({
-  text,
-  emphasis: "strong",
-});
-
-const paragraph = (
-  ...segments: CaseStudyTextSegment[]
-): CaseStudyParagraph => ({
-  segments,
-});
 
 export const updateTagsCaseStudy: CaseStudy = {
   coverImage: {

@@ -26,9 +26,7 @@ function CaseStudyPanel({
     : null;
   const caseStudy = activeProjectDetails?.caseStudy;
   const otherProjectNames = PROJECT_NAMES.filter(
-    (projectName) =>
-      projectName !== activeProject &&
-      PROJECTS_BY_NAME[projectName].caseStudy !== null,
+    (projectName) => projectName !== activeProject,
   );
 
   useEffect(() => {

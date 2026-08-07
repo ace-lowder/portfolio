@@ -20,8 +20,8 @@ export type ProjectName = (typeof PROJECT_NAMES)[number];
 type ProjectMetadata = {
   name: ProjectName;
   subtitle: string;
-  cardImage: ProjectImage | null;
-  caseStudy: CaseStudy | null;
+  cardImage: ProjectImage;
+  caseStudy: CaseStudy;
 };
 
 export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {

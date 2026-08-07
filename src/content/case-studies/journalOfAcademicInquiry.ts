@@ -2,26 +2,11 @@ import journalOfAcademicInquiryCoverImage from "../../assets/case-studies/journa
 import journalOfAcademicInquiryImpactImage from "../../assets/case-studies/journal-of-academic-inquiry/impact.png";
 import journalOfAcademicInquiryPaymentFlowImage from "../../assets/case-studies/journal-of-academic-inquiry/payment-flow.png";
 import {
+  normal,
+  paragraph,
+  strong,
   type CaseStudy,
-  type CaseStudyParagraph,
-  type CaseStudyTextSegment,
 } from "../caseStudy";
-
-const normal = (text: string): CaseStudyTextSegment => ({
-  text,
-  emphasis: "normal",
-});
-
-const strong = (text: string): CaseStudyTextSegment => ({
-  text,
-  emphasis: "strong",
-});
-
-const paragraph = (
-  ...segments: CaseStudyTextSegment[]
-): CaseStudyParagraph => ({
-  segments,
-});
 
 export const journalOfAcademicInquiryCaseStudy: CaseStudy = {
   coverImage: {

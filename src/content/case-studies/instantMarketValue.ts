@@ -2,26 +2,11 @@ import instantMarketValueCoverImage from "../../assets/case-studies/instant-mark
 import instantMarketValueLaunchResultsImage from "../../assets/case-studies/instant-market-value/launch-results.svg";
 import instantMarketValueReportFlowImage from "../../assets/case-studies/instant-market-value/report-flow.svg";
 import {
+  normal,
+  paragraph,
+  strong,
   type CaseStudy,
-  type CaseStudyParagraph,
-  type CaseStudyTextSegment,
 } from "../caseStudy";
-
-const normal = (text: string): CaseStudyTextSegment => ({
-  text,
-  emphasis: "normal",
-});
-
-const strong = (text: string): CaseStudyTextSegment => ({
-  text,
-  emphasis: "strong",
-});
-
-const paragraph = (
-  ...segments: CaseStudyTextSegment[]
-): CaseStudyParagraph => ({
-  segments,
-});
 
 export const instantMarketValueCaseStudy: CaseStudy = {
   coverImage: {
