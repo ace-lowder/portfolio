@@ -92,11 +92,13 @@ function CaseStudyPanel({
             : "pointer-events-none translate-y-full"
         }`}
       >
-        <header className="sticky top-0 z-10 bg-white">
-          <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-8 py-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
-            <div className="min-w-0 flex-1">
+        <header className="sticky top-0 z-10 border-b border-gray-100 bg-white">
+          <div className="mx-auto flex w-full max-w-5xl items-start justify-between gap-6 px-8 py-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
+            <div className="min-w-0 flex-1 space-y-2">
               <h1 id="case-study-title">{activeProjectDetails?.name}</h1>
-              <p className="text-lg">{activeProjectDetails?.subtitle}</p>
+              <p className="max-w-3xl leading-6 text-gray-600 min-[785px]:text-lg">
+                {activeProjectDetails?.subtitle}
+              </p>
             </div>
             <button
               ref={closeButtonRef}
@@ -110,7 +112,7 @@ function CaseStudyPanel({
           </div>
         </header>
 
-        <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-8 pb-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-8 pb-12 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
           {caseStudy?.coverImage ? (
             <img
               src={caseStudy.coverImage.src}
@@ -126,9 +128,14 @@ function CaseStudyPanel({
           ) : null}
 
           {otherProjectNames.length > 0 ? (
-            <div className="hidden min-[785px]:block">
-              <h2 className="mb-8">More projects</h2>
-              <section className="grid grid-cols-2 gap-8 min-[1209px]:grid-cols-4">
+            <section
+              aria-labelledby="more-projects-heading"
+              className="hidden pt-12 min-[785px]:block"
+            >
+              <h2 id="more-projects-heading" className="mb-6">
+                More projects
+              </h2>
+              <div className="grid grid-cols-3 gap-6 min-[1209px]:gap-8">
                 {otherProjectNames.map((projectName) => (
                   <ProjectCard
                     key={projectName}
@@ -136,8 +143,8 @@ function CaseStudyPanel({
                     onOpen={() => onOpenProject(projectName)}
                   />
                 ))}
-              </section>
-            </div>
+              </div>
+            </section>
           ) : null}
         </div>
       </section>
@@ -155,10 +162,10 @@ function CaseStudySection({
   switch (section.type) {
     case "split":
       return (
-        <section className="grid gap-8 min-[785px]:grid-cols-[7fr_3fr]">
+        <section className="grid gap-8 min-[785px]:grid-cols-[3fr_2fr]">
           {section.columns.map((column) => (
-            <div key={column.heading}>
-              <h2 className="mb-4">{column.heading}</h2>
+            <div key={column.heading} className="space-y-4">
+              <h2>{column.heading}</h2>
               {column.paragraphs.map((paragraph, index) => (
                 <CaseStudyParagraph
                   key={`${column.heading}-${index}`}
@@ -171,21 +178,23 @@ function CaseStudySection({
       );
     case "content":
       return (
-        <section className="space-y-4">
-          <h2>{section.heading}</h2>
-          {section.paragraphs.map((paragraph, index) => (
-            <CaseStudyParagraph
-              key={`${section.id}-paragraph-${index}`}
-              paragraph={paragraph}
-            />
-          ))}
-          {section.bullets.length > 0 ? (
-            <ul className="list-disc space-y-2 pl-6">
-              {section.bullets.map((bullet) => (
-                <li key={bullet}>{bullet}</li>
-              ))}
-            </ul>
-          ) : null}
+        <section className="space-y-6">
+          <div className="max-w-3xl space-y-4">
+            <h2>{section.heading}</h2>
+            {section.paragraphs.map((paragraph, index) => (
+              <CaseStudyParagraph
+                key={`${section.id}-paragraph-${index}`}
+                paragraph={paragraph}
+              />
+            ))}
+            {section.bullets.length > 0 ? (
+              <ul className="list-disc space-y-2 pl-6 leading-7 text-gray-700">
+                {section.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
           {section.image ? (
             <img
               src={section.image.src}
@@ -199,13 +208,13 @@ function CaseStudySection({
       );
     case "details":
       return (
-        <section className="space-y-4">
+        <section className="space-y-6">
           <h2>{section.heading}</h2>
-          <dl className="grid gap-8 min-[1209px]:grid-cols-3">
+          <dl className="grid gap-8 min-[785px]:grid-cols-3">
             {section.items.map((item) => (
               <div key={item.label} className="space-y-1">
                 <dt className="font-bold">{item.label}</dt>
-                <dd>
+                <dd className="leading-6 text-gray-700">
                   {item.href ? (
                     <a
                       href={item.href}
@@ -233,7 +242,7 @@ function CaseStudyParagraph({
   paragraph: CaseStudyParagraph;
 }) {
   return (
-    <p>
+    <p className="leading-7 text-gray-700">
       {paragraph.segments.map((segment, index) =>
         segment.emphasis === "strong" ? (
           <strong key={`${index}-${segment.text}`}>{segment.text}</strong>

@@ -20,7 +20,10 @@ function App() {
       {import.meta.env.DEV && <ResponsiveOverlay />}
       <main className="mx-auto flex w-full max-w-150 flex-col gap-8 px-8 py-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-298 min-[1209px]:flex-row">
         <ProfileCard />
-        <section className="grid min-w-0 flex-1 grid-cols-1 gap-8 min-[785px]:grid-cols-2">
+        <section
+          aria-label="Projects"
+          className="grid min-w-0 flex-1 grid-cols-1 gap-8 min-[785px]:grid-cols-2"
+        >
           {PROJECT_NAMES.map((projectName) => (
             <ProjectCard
               key={projectName}
