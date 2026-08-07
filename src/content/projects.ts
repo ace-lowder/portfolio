@@ -1,5 +1,7 @@
 import journalOfAcademicInquiryCardImage from "../assets/case-studies/journal-of-academic-inquiry/card.png";
+import instantMarketValueCardImage from "../assets/case-studies/instant-market-value/cover-placeholder.png";
 import { type CaseStudy, type ProjectImage } from "./caseStudy";
+import { instantMarketValueCaseStudy } from "./case-studies/instantMarketValue";
 import { journalOfAcademicInquiryCaseStudy } from "./case-studies/journalOfAcademicInquiry";
 
 export const PROJECT_NAMES = [
@@ -43,8 +45,12 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   },
   "Instant Market Value": {
     name: "Instant Market Value",
-    subtitle: "Project subtitle coming soon.",
-    cardImage: null,
-    caseStudy: null,
+    subtitle:
+      "A paid vehicle valuation platform that turns current comparable listings into evidence-based market reports",
+    cardImage: {
+      src: instantMarketValueCardImage,
+      alt: "Vehicle market valuation dashboard displayed on a laptop in an auto body shop office.",
+    },
+    caseStudy: instantMarketValueCaseStudy,
   },
 };
