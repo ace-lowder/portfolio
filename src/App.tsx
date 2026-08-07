@@ -1,18 +1,19 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import CaseStudyPanel from "./components/CaseStudyPanel";
 import ProfileCard from "./components/ProfileCard";
 import ProjectCard from "./components/ProjectCard";
-import { PROJECT_NAMES, type ProjectName } from "./content/projects";
+import {
+  getProjectNameByPath,
+  PROJECT_NAMES,
+  PROJECTS_BY_NAME,
+  type ProjectName,
+} from "./content/projects";
 import ResponsiveOverlay from "./components/ResponsiveOverlay";
 
+const PORTFOLIO_TITLE = "Ace Lowder | Software Engineer";
+
 function App() {
-  const [activeProject, setActiveProject] = useState<ProjectName | null>(null);
-  const openProject = useCallback((projectName: ProjectName) => {
-    setActiveProject(projectName);
-  }, []);
-  const closeProject = useCallback(() => {
-    setActiveProject(null);
-  }, []);
+  const { activeProject, openProject, closeProject } = useProjectRoute();
 
   return (
     <>
@@ -39,3 +40,36 @@ function App() {
 }
 
 export default App;
+
+function useProjectRoute() {
+  const [activeProject, setActiveProject] = useState<ProjectName | null>(() =>
+    getProjectNameByPath(window.location.pathname),
+  );
+
+  useEffect(() => {
+    function handlePopState() {
+      setActiveProject(getProjectNameByPath(window.location.pathname));
+    }
+
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
+
+  useEffect(() => {
+    document.title = activeProject
+      ? `${activeProject} Case Study | Ace Lowder`
+      : PORTFOLIO_TITLE;
+  }, [activeProject]);
+
+  const openProject = useCallback((projectName: ProjectName) => {
+    window.history.pushState(null, "", PROJECTS_BY_NAME[projectName].path);
+    setActiveProject(projectName);
+  }, []);
+
+  const closeProject = useCallback(() => {
+    window.history.pushState(null, "", "/");
+    setActiveProject(null);
+  }, []);
+
+  return { activeProject, openProject, closeProject };
+}
