@@ -12,6 +12,7 @@ function ProfileCard() {
         src={coverImage}
         alt=""
         aria-hidden="true"
+        decoding="async"
         className="absolute inset-x-0 top-0 hidden h-30 w-full object-cover object-bottom min-[785px]:block min-[1209px]:hidden"
       />
       <Profile />
@@ -30,6 +31,7 @@ function Profile() {
       <img
         src={profileImage}
         alt="Ace Lowder"
+        decoding="async"
         className="size-48 rounded-full border-6 border-card object-cover"
       />
       <h1 className="text-3xl">Ace Lowder</h1>
@@ -40,10 +42,10 @@ function Profile() {
 
 function Socials() {
   return (
-    <div className="absolute inset-y-0 right-6 z-10 flex flex-col items-center justify-center bg-transparent min-[785px]:top-auto min-[785px]:bottom-6 min-[785px]:translate-y-0 min-[785px]:flex-row min-[785px]:items-center min-[785px]:gap-6 min-[785px]:p-0 min-[1209px]:static min-[1209px]:z-10 min-[1209px]:flex-col min-[1209px]:items-center min-[1209px]:justify-center min-[1209px]:gap-6 min-[1209px]:p-6">
+    <div className="z-10 flex flex-col items-center justify-center gap-6 px-6 pb-6 min-[785px]:absolute min-[785px]:bottom-6 min-[785px]:right-6 min-[785px]:flex-row min-[785px]:p-0 min-[1209px]:static min-[1209px]:flex-col min-[1209px]:p-6">
       <nav
         aria-label="Social links"
-        className="flex flex-col gap-4 min-[785px]:flex-row"
+        className="flex gap-4"
       >
         <a
           href="https://github.com/ace-lowder"
@@ -72,10 +74,9 @@ function Socials() {
         </a>
       </nav>
       <a
-        href="https://www.google.com/"
-        target="_blank"
-        rel="noreferrer"
-        className="hidden cursor-pointer items-center gap-2 rounded-md bg-primary px-5 py-2 font-medium text-white transition-opacity hover:opacity-90 focus-visible:opacity-90 min-[785px]:inline-flex"
+        href="/ace-lowder-resume.pdf"
+        download="Ace-Lowder-Resume.pdf"
+        className="inline-flex cursor-pointer items-center gap-2 rounded-md bg-primary px-5 py-2 font-medium text-white transition-opacity hover:opacity-90 focus-visible:opacity-90"
       >
         <TbDownload className="size-5 scale-100" aria-hidden="true" />
         Download Resume

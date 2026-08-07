@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import CaseStudyPanel from "./components/CaseStudyPanel";
 import ProfileCard from "./components/ProfileCard";
 import ProjectCard from "./components/ProjectCard";
@@ -7,6 +7,12 @@ import ResponsiveOverlay from "./components/ResponsiveOverlay";
 
 function App() {
   const [activeProject, setActiveProject] = useState<ProjectName | null>(null);
+  const openProject = useCallback((projectName: ProjectName) => {
+    setActiveProject(projectName);
+  }, []);
+  const closeProject = useCallback(() => {
+    setActiveProject(null);
+  }, []);
 
   return (
     <>
@@ -18,15 +24,15 @@ function App() {
             <ProjectCard
               key={projectName}
               projectName={projectName}
-              onOpen={() => setActiveProject(projectName)}
+              onOpen={() => openProject(projectName)}
             />
           ))}
         </section>
       </main>
       <CaseStudyPanel
         activeProject={activeProject}
-        onOpenProject={(projectName) => setActiveProject(projectName)}
-        onClose={() => setActiveProject(null)}
+        onOpenProject={openProject}
+        onClose={closeProject}
       />
     </>
   );
