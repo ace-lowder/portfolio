@@ -21,7 +21,8 @@ function CaseStudyPanel({
   onClose: () => void;
 }) {
   const panelRef = useRef<HTMLElement>(null);
-  const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const desktopCloseButtonRef = useRef<HTMLButtonElement>(null);
+  const mobileCloseButtonRef = useRef<HTMLButtonElement>(null);
   const open = activeProject !== null;
   const activeProjectDetails = activeProject
     ? PROJECTS_BY_NAME[activeProject]
@@ -40,7 +41,10 @@ function CaseStudyPanel({
         : null;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    closeButtonRef.current?.focus();
+    focusVisibleCloseButton(
+      desktopCloseButtonRef.current,
+      mobileCloseButtonRef.current,
+    );
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
@@ -49,7 +53,11 @@ function CaseStudyPanel({
       }
 
       if (event.key === "Tab" && panelRef.current) {
-        keepFocusInsidePanel(event, panelRef.current);
+        keepFocusInsideCaseStudy(
+          event,
+          panelRef.current,
+          desktopCloseButtonRef.current,
+        );
       }
     }
 
@@ -70,15 +78,25 @@ function CaseStudyPanel({
 
   return (
     <>
-      <div
-        aria-hidden="true"
-        className={`fixed inset-0 z-30 hidden cursor-pointer transition-colors duration-300 motion-reduce:transition-none min-[785px]:block ${
+      <button
+        ref={desktopCloseButtonRef}
+        type="button"
+        aria-label="Close project case study"
+        className={`group fixed inset-0 z-30 hidden cursor-pointer transition-colors duration-300 motion-reduce:transition-none min-[785px]:block ${
           open
             ? "pointer-events-auto bg-gray-900/70"
             : "pointer-events-none bg-transparent"
         }`}
         onClick={onClose}
-      />
+      >
+        <FiX
+          className={`absolute right-4 top-3 size-6 text-white/60 transition-transform duration-300 ease-out motion-reduce:transition-none ${
+            open
+              ? "translate-y-0 hover:text-white group-focus-visible:text-white"
+              : "translate-y-[calc(100vh-3rem)]"
+          }`}
+        />
+      </button>
       <section
         ref={panelRef}
         role="dialog"
@@ -92,19 +110,17 @@ function CaseStudyPanel({
             : "pointer-events-none translate-y-full"
         }`}
       >
-        <header className="sticky top-0 z-10 border-b border-gray-100 bg-white">
-          <div className="mx-auto flex w-full max-w-5xl items-start justify-between gap-6 px-8 py-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
-            <div className="min-w-0 flex-1 space-y-2">
+        <header className="sticky top-0 z-10 bg-white">
+          <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-8 py-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
+            <div className="min-w-0 flex-1">
               <h1 id="case-study-title">{activeProjectDetails?.name}</h1>
-              <p className="max-w-3xl leading-6 text-gray-600 min-[785px]:text-lg">
-                {activeProjectDetails?.subtitle}
-              </p>
+              <p className="text-lg">{activeProjectDetails?.subtitle}</p>
             </div>
             <button
-              ref={closeButtonRef}
+              ref={mobileCloseButtonRef}
               type="button"
               aria-label="Close project case study"
-              className="shrink-0 cursor-pointer rounded p-1 text-black/60 hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+              className="shrink-0 cursor-pointer self-start text-black/60 hover:text-black min-[785px]:hidden"
               onClick={onClose}
             >
               <FiX className="size-6" />
@@ -130,7 +146,7 @@ function CaseStudyPanel({
           {otherProjectNames.length > 0 ? (
             <section
               aria-labelledby="more-projects-heading"
-              className="hidden pt-12 min-[785px]:block"
+              className="hidden pt-18 min-[785px]:block"
             >
               <h2 id="more-projects-heading" className="mb-6">
                 More projects
@@ -254,12 +270,30 @@ function CaseStudyParagraph({
   );
 }
 
-function keepFocusInsidePanel(event: KeyboardEvent, panel: HTMLElement) {
-  const focusableElements = Array.from(
+function focusVisibleCloseButton(
+  desktopCloseButton: HTMLButtonElement | null,
+  mobileCloseButton: HTMLButtonElement | null,
+) {
+  const closeButton = [desktopCloseButton, mobileCloseButton].find(
+    (button) => button?.offsetParent !== null,
+  );
+  closeButton?.focus();
+}
+
+function keepFocusInsideCaseStudy(
+  event: KeyboardEvent,
+  panel: HTMLElement,
+  desktopCloseButton: HTMLButtonElement | null,
+) {
+  const panelElements = Array.from(
     panel.querySelectorAll<HTMLElement>(
       'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
     ),
   ).filter((element) => element.offsetParent !== null);
+  const focusableElements =
+    desktopCloseButton?.offsetParent !== null
+      ? [desktopCloseButton, ...panelElements]
+      : panelElements;
   const firstElement = focusableElements[0];
   const lastElement = focusableElements[focusableElements.length - 1];
 
