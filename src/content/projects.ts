@@ -19,7 +19,7 @@ export type ProjectName = (typeof PROJECT_NAMES)[number];
 
 type ProjectMetadata = {
   name: ProjectName;
-  path: `/projects/${string}`;
+  path: `/${string}`;
   subtitle: string;
   cardImage: ProjectImage;
   caseStudy: CaseStudy;
@@ -28,7 +28,7 @@ type ProjectMetadata = {
 export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   UpdateTags: {
     name: "UpdateTags",
-    path: "/projects/update-tags",
+    path: "/update-tags",
     subtitle:
       "A live Etsy tag generator with saved history, paid plans, and quality safeguards",
     cardImage: {
@@ -39,7 +39,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   },
   Diff: {
     name: "Diff",
-    path: "/projects/diff",
+    path: "/diff",
     subtitle:
       "A local-first writing editor for comparing a rough draft with its revision",
     cardImage: {
@@ -50,7 +50,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   },
   "Journal of Academic Inquiry": {
     name: "Journal of Academic Inquiry",
-    path: "/projects/journal-of-academic-inquiry",
+    path: "/journal-of-academic-inquiry",
     subtitle:
       "An online academic journal platform to help high school students write and publish academic writing",
     cardImage: {
@@ -61,7 +61,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   },
   "Instant Market Value": {
     name: "Instant Market Value",
-    path: "/projects/instant-market-value",
+    path: "/instant-market-value",
     subtitle:
       "A paid vehicle valuation platform that turns current comparable listings into evidence-based market reports",
     cardImage: {
