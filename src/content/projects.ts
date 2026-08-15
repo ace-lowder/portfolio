@@ -1,7 +1,7 @@
-import diffCardImage from "../assets/case-studies/diff/cover-placeholder.png";
-import instantMarketValueCardImage from "../assets/case-studies/instant-market-value/cover-placeholder.png";
+import diffCardImage from "../assets/case-studies/diff/card.png";
+import instantMarketValueCardImage from "../assets/case-studies/instant-market-value/card.png";
 import journalOfAcademicInquiryCardImage from "../assets/case-studies/journal-of-academic-inquiry/card.png";
-import updateTagsCardImage from "../assets/case-studies/update-tags/cover-placeholder.png";
+import updateTagsCardImage from "../assets/case-studies/update-tags/card.png";
 import { type CaseStudy, type ProjectImage } from "./caseStudy";
 import { diffCaseStudy } from "./case-studies/diff";
 import { instantMarketValueCaseStudy } from "./case-studies/instantMarketValue";
@@ -36,7 +36,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
       "A live Etsy tag generator with saved history, paid plans, and quality safeguards",
     cardImage: {
       src: updateTagsCardImage,
-      alt: "Marketplace listing form beside 13 generated search tags on a laptop.",
+      alt: "Dark AI prompt interface with red and blue lighting.",
     },
     caseStudy: updateTagsCaseStudy,
   },
@@ -48,7 +48,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
       "A local-first writing editor for comparing a rough draft with its revision",
     cardImage: {
       src: diffCardImage,
-      alt: "Two-pane writing editor comparing a draft with its revision on a laptop.",
+      alt: "Vintage car marketplace interface shown at an angle.",
     },
     caseStudy: diffCaseStudy,
   },
@@ -72,7 +72,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
       "A paid vehicle valuation platform that turns current comparable listings into evidence-based market reports",
     cardImage: {
       src: instantMarketValueCardImage,
-      alt: "Vehicle market valuation dashboard displayed on a laptop in an auto body shop office.",
+      alt: "InstantMV promotional display in an auto repair shop.",
     },
     caseStudy: instantMarketValueCaseStudy,
   },
