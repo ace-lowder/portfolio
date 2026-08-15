@@ -1,13 +1,21 @@
-:root {
-  font-family: Arial, sans-serif;
-  color: #000;
-  background: #fff;
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0e294c;
+  --color-card: #fbf9f7;
+  --color-card-border: #f3ede7;
 }
 
-* {
-  box-sizing: border-box;
-}
+@layer base {
+  body {
+    @apply text-gray-950 antialiased;
+  }
 
-body {
-  margin: 0;
+  h1 {
+    @apply text-2xl font-bold leading-tight;
+  }
+
+  h2 {
+    @apply text-xl font-bold leading-tight;
+  }
 }
