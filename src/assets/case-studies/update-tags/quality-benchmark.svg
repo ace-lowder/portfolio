@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 620" role="img">
+  <rect width="1440" height="620" fill="#3b2417"/>
+  <text x="720" y="92" fill="#fffaf5" font-family="Arial, sans-serif" font-size="42" font-weight="700" text-anchor="middle">Version 1.9 quality benchmark</text>
+  <g fill="#fffaf5">
+    <rect x="70" y="150" width="292" height="360" rx="24"/>
+    <rect x="406" y="150" width="292" height="360" rx="24"/>
+    <rect x="742" y="150" width="292" height="360" rx="24"/>
+    <rect x="1078" y="150" width="292" height="360" rx="24"/>
+  </g>
+  <g fill="#3b2417" font-family="Arial, sans-serif" text-anchor="middle">
+    <g font-size="78" font-weight="700">
+      <text x="216" y="315">30</text>
+      <text x="552" y="315">10</text>
+      <text x="888" y="315">60</text>
+      <text x="1224" y="315">0</text>
+    </g>
+    <g font-size="27" font-weight="700">
+      <text x="216" y="378">listings</text>
+      <text x="552" y="378">categories</text>
+      <text x="888" y="378">generations</text>
+      <text x="1224" y="378">rule failures</text>
+    </g>
+    <g font-size="20" fill="#76523c">
+      <text x="216" y="420">real Etsy examples</text>
+      <text x="552" y="420">from art to weddings</text>
+      <text x="888" y="420">full and title-only</text>
+      <text x="1224" y="420">oversized, duplicate,</text>
+      <text x="1224" y="450">or one-word tags</text>
+    </g>
+  </g>
+</svg>
