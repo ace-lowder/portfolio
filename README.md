@@ -1,26 +1,30 @@
 # Ace Lowder Portfolio
 
-Personal software engineering portfolio built with React, TypeScript, Vite, and Tailwind CSS.
+Ace Lowder's software engineering portfolio presents four full-stack product case studies.
 
-## Local setup
+## Run locally
+
+You need Git, Node.js 22.12 or newer, and npm.
 
 ```bash
+git clone https://github.com/ace-lowder/portfolio.git
+cd portfolio
 npm ci
 npm run dev
 ```
 
-## Validation
+Open `http://localhost:5173`. The portfolio has no backend or environment variables.
 
-```bash
-npm run lint
-npm run build
-```
+## Commands
 
-## Project structure
+- `npm run dev` starts the local app
+- `npm run lint` checks the code
+- `npm run build` creates the production build in `dist`
+- `npm run preview` serves the production build locally
 
-- `src/content/projects.ts` defines project cards and their case studies
-- `src/content/case-studies` contains the written case-study content
-- `src/assets/case-studies` contains replaceable covers and editable diagrams
-- `public/ace-lowder-resume.pdf` is the resume served by the download button
+## Project content
 
-The production build is written to `dist` for static hosting.
+- `src/content/projects.ts` defines project cards and metadata
+- `src/content/case-studies` contains the case-study copy
+- `src/assets/case-studies` contains card images, covers, and diagrams
+- `public/ace-lowder-resume.pdf` is the downloadable resume
