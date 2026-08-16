@@ -41,7 +41,6 @@ export type CaseStudySection =
     };
 
 export type CaseStudy = {
-  coverImage: ProjectImage | null;
   sections: CaseStudySection[];
 };
 

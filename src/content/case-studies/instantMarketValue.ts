@@ -1,6 +1,3 @@
-import instantMarketValueCoverImage from "../../assets/case-studies/instant-market-value/cover-placeholder.png";
-import instantMarketValueLaunchResultsImage from "../../assets/case-studies/instant-market-value/launch-results.svg";
-import instantMarketValueReportFlowImage from "../../assets/case-studies/instant-market-value/report-flow.svg";
 import {
   normal,
   paragraph,
@@ -9,10 +6,6 @@ import {
 } from "../caseStudy";
 
 export const instantMarketValueCaseStudy: CaseStudy = {
-  coverImage: {
-    src: instantMarketValueCoverImage,
-    alt: "Laptop displaying a vehicle market valuation dashboard in an auto body shop office.",
-  },
   sections: [
     {
       id: "problem-and-role",
@@ -77,10 +70,7 @@ export const instantMarketValueCaseStudy: CaseStudy = {
         ),
       ],
       bullets: [],
-      image: {
-        src: instantMarketValueLaunchResultsImage,
-        alt: "Early launch results: 56 total invoices, 10 paid invoices at $75, six paying customers, and three repeat customers.",
-      },
+      image: null,
     },
     {
       id: "report-flow",
@@ -99,10 +89,7 @@ export const instantMarketValueCaseStudy: CaseStudy = {
         ),
       ],
       bullets: [],
-      image: {
-        src: instantMarketValueReportFlowImage,
-        alt: "Four-step report flow: gather vehicle details, find comparable listings, confirm checkout after market data is found, and deliver a saved PDF report.",
-      },
+      image: null,
     },
     {
       id: "shared-foundation",

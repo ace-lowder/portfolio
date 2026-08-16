@@ -1,6 +1,3 @@
-import updateTagsCoverImage from "../../assets/case-studies/update-tags/cover-placeholder.png";
-import updateTagsGenerationFlowImage from "../../assets/case-studies/update-tags/generation-flow.svg";
-import updateTagsQualityBenchmarkImage from "../../assets/case-studies/update-tags/quality-benchmark.svg";
 import {
   normal,
   paragraph,
@@ -9,10 +6,6 @@ import {
 } from "../caseStudy";
 
 export const updateTagsCaseStudy: CaseStudy = {
-  coverImage: {
-    src: updateTagsCoverImage,
-    alt: "Marketplace listing form beside 13 generated search tags on a laptop.",
-  },
   sections: [
     {
       id: "problem-and-role",
@@ -80,10 +73,7 @@ export const updateTagsCaseStudy: CaseStudy = {
         ),
       ],
       bullets: [],
-      image: {
-        src: updateTagsGenerationFlowImage,
-        alt: "Four-step generation flow: clean the listing, find buyer intent, expand discovery, then validate and save 13 tags.",
-      },
+      image: null,
     },
     {
       id: "billing-reliability",
@@ -121,10 +111,7 @@ export const updateTagsCaseStudy: CaseStudy = {
         ),
       ],
       bullets: [],
-      image: {
-        src: updateTagsQualityBenchmarkImage,
-        alt: "Version 1.9 benchmark summary: 30 listings, 10 categories, 60 generations, and no oversized, duplicate, or one-word tag failures.",
-      },
+      image: null,
     },
     {
       id: "operations",
