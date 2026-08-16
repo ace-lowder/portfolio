@@ -22,7 +22,7 @@ function App() {
         <ProfileCard />
         <section
           aria-label="Projects"
-          className="grid min-w-0 flex-1 grid-cols-1 gap-8 border-t border-gray-200 pt-8 md:grid-cols-2 xl:grid-cols-3"
+          className="grid min-w-0 flex-1 grid-cols-1 gap-8 border-t border-[#3c3c3c] pt-8 md:grid-cols-2 xl:grid-cols-3"
         >
           {PROJECT_NAMES.map((projectName) => (
             <ProjectCard
