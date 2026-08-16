@@ -112,9 +112,11 @@ function CaseStudyPanel({
       >
         <header className="sticky top-0 z-10 bg-white">
           <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-8 py-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
-            <div className="min-w-0 flex-1">
+            <div className="flex min-w-0 flex-1 flex-col gap-1 min-[785px]:flex-row min-[785px]:items-center min-[785px]:justify-between min-[785px]:gap-8">
               <h1 id="case-study-title">{activeProjectDetails?.name}</h1>
-              <p className="text-lg">{activeProjectDetails?.subtitle}</p>
+              <p className="text-gray-500 min-[785px]:text-right">
+                {activeProjectDetails?.subtitle}
+              </p>
             </div>
             <button
               ref={mobileCloseButtonRef}
