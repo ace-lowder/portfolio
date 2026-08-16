@@ -36,8 +36,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
     liveUrl: "https://tagloom.app/",
     githubUrl: "https://github.com/ace-lowder/tagloom",
     projectType: "Personal",
-    subtitle:
-      "A live Etsy tag generator with saved history, paid plans, and quality safeguards",
+    subtitle: "AI-powered Etsy tag generator",
     cardImage: {
       src: updateTagsCardImage,
       alt: "Tagloom generating 13 search tags for a handmade ceramic mug.",
@@ -50,8 +49,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
     liveUrl: "http://diffedit.com/",
     githubUrl: "https://github.com/ace-lowder/diff",
     projectType: "Personal",
-    subtitle:
-      "A local-first writing editor for comparing a rough draft with its revision",
+    subtitle: "Local-first writing comparison editor",
     cardImage: {
       src: diffCardImage,
       alt: "Diff comparing two drafts with highlighted text changes.",
@@ -63,8 +61,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
     path: "/journal-of-academic-inquiry",
     liveUrl: "https://journalofinquiry.org/",
     projectType: "Freelance",
-    subtitle:
-      "An online academic journal platform to help high school students write and publish academic writing",
+    subtitle: "Academic coaching and publishing platform",
     cardImage: {
       src: journalOfAcademicInquiryCardImage,
       alt: "Journal of Academic Inquiry website on a laptop at a study desk.",
@@ -76,8 +73,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
     path: "/instant-market-value",
     liveUrl: "https://www.instantmv.com/",
     projectType: "Work",
-    subtitle:
-      "A paid vehicle valuation platform that turns current comparable listings into evidence-based market reports",
+    subtitle: "Evidence-based vehicle valuation platform",
     cardImage: {
       src: instantMarketValueCardImage,
       alt: "InstantMV vehicle valuation graphic in an auto repair shop.",
