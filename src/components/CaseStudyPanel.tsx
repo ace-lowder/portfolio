@@ -195,7 +195,7 @@ function CaseStudySection({
     case "content":
       return (
         <section className="space-y-6">
-          <div className="max-w-3xl space-y-4">
+          <div className="space-y-4">
             <h2>{section.heading}</h2>
             {section.paragraphs.map((paragraph, index) => (
               <CaseStudyParagraph
