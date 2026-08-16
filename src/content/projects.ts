@@ -106,7 +106,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
     name: "Prep Pathways",
     path: "/prep-pathways",
     liveUrl: "https://preppathways.net/",
-    projectType: "Personal",
+    projectType: "Freelance",
     subtitle: "College prep and tutoring website",
     cardImage: {
       src: prepPathwaysCardImage,
