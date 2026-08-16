@@ -1,6 +1,3 @@
-import diffCoverImage from "../../assets/case-studies/diff/cover-placeholder.png";
-import diffEditorFlowImage from "../../assets/case-studies/diff/editor-flow.svg";
-import diffTestCoverageImage from "../../assets/case-studies/diff/test-coverage.svg";
 import {
   normal,
   paragraph,
@@ -9,10 +6,6 @@ import {
 } from "../caseStudy";
 
 export const diffCaseStudy: CaseStudy = {
-  coverImage: {
-    src: diffCoverImage,
-    alt: "Two-pane writing editor comparing a draft with its revision on a laptop.",
-  },
   sections: [
     {
       id: "problem-and-role",
@@ -80,10 +73,7 @@ export const diffCaseStudy: CaseStudy = {
         ),
       ],
       bullets: [],
-      image: {
-        src: diffEditorFlowImage,
-        alt: "Four-step editor flow: enter both versions, compare in a Web Worker, align changes, and review them in synchronized panes.",
-      },
+      image: null,
     },
     {
       id: "local-first",
@@ -118,10 +108,7 @@ export const diffCaseStudy: CaseStudy = {
         ),
       ],
       bullets: [],
-      image: {
-        src: diffTestCoverageImage,
-        alt: "Quality summary showing 26 test files, 455 passing tests, and no server accounts because drafts remain in browser storage.",
-      },
+      image: null,
     },
     {
       id: "what-id-improve",
