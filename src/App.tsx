@@ -28,7 +28,6 @@ function App() {
             <ProjectCard
               key={projectName}
               projectName={projectName}
-              showProjectType
               onOpen={() => openProject(projectName)}
             />
           ))}
