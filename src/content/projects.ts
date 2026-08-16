@@ -1,11 +1,15 @@
+import aiOrNotCardImage from "../assets/case-studies/ai-or-not/card.png";
 import diffCardImage from "../assets/case-studies/diff/card.png";
 import instantMarketValueCardImage from "../assets/case-studies/instant-market-value/card.png";
 import journalOfAcademicInquiryCardImage from "../assets/case-studies/journal-of-academic-inquiry/card.png";
+import prepPathwaysCardImage from "../assets/case-studies/prep-pathways/card.png";
 import updateTagsCardImage from "../assets/case-studies/update-tags/card.png";
 import { type CaseStudy, type ProjectImage } from "./caseStudy";
+import { aiOrNotCaseStudy } from "./case-studies/aiOrNot";
 import { diffCaseStudy } from "./case-studies/diff";
 import { instantMarketValueCaseStudy } from "./case-studies/instantMarketValue";
 import { journalOfAcademicInquiryCaseStudy } from "./case-studies/journalOfAcademicInquiry";
+import { prepPathwaysCaseStudy } from "./case-studies/prepPathways";
 import { updateTagsCaseStudy } from "./case-studies/updateTags";
 
 export const PROJECT_NAMES = [
@@ -13,6 +17,8 @@ export const PROJECT_NAMES = [
   "Diff",
   "Journal of Academic Inquiry",
   "Instant Market Value",
+  "AI or Not",
+  "Prep Pathways",
 ] as const;
 
 export type ProjectName = (typeof PROJECT_NAMES)[number];
@@ -79,6 +85,31 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
       alt: "InstantMV vehicle valuation graphic in an auto repair shop.",
     },
     caseStudy: instantMarketValueCaseStudy,
+  },
+  "AI or Not": {
+    name: "AI or Not",
+    path: "/ai-or-not",
+    liveUrl: "https://aiornot.site/",
+    githubUrl: "https://github.com/ace-lowder/ai-or-not",
+    projectType: "Personal",
+    subtitle: "AI comment guessing game",
+    cardImage: {
+      src: aiOrNotCardImage,
+      alt: "AI or Not logo with a cartoon robot on a dark background.",
+    },
+    caseStudy: aiOrNotCaseStudy,
+  },
+  "Prep Pathways": {
+    name: "Prep Pathways",
+    path: "/prep-pathways",
+    liveUrl: "https://preppathways.net/",
+    projectType: "Personal",
+    subtitle: "College prep and tutoring website",
+    cardImage: {
+      src: prepPathwaysCardImage,
+      alt: "Prep Pathways college counseling website shown across several pages.",
+    },
+    caseStudy: prepPathwaysCaseStudy,
   },
 };
 
