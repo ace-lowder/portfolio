@@ -1,20 +1,10 @@
-import coverImage from "../assets/cover.png";
 import profileImage from "../assets/profile.png";
-import { FaLinkedin } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa6";
-import { TbDownload } from "react-icons/tb";
-import { TbMailFilled } from "react-icons/tb";
+import { FiDownload, FiGithub } from "react-icons/fi";
+import { TbBrandLinkedin } from "react-icons/tb";
 
 function ProfileCard() {
   return (
-    <aside className="relative block h-auto w-full gap-0 self-start overflow-hidden rounded-lg border border-card-border bg-card min-[785px]:relative min-[785px]:block min-[785px]:h-auto min-[1209px]:flex min-[1209px]:h-122 min-[1209px]:sticky min-[1209px]:top-8 min-[1209px]:w-74 min-[1209px]:shrink-0 min-[1209px]:flex-col min-[1209px]:items-stretch min-[1209px]:justify-between">
-      <img
-        src={coverImage}
-        alt=""
-        aria-hidden="true"
-        decoding="async"
-        className="absolute inset-x-0 top-0 hidden h-30 w-full object-cover object-bottom min-[785px]:block min-[1209px]:hidden"
-      />
+    <aside className="flex w-full flex-col items-start gap-5">
       <Profile />
       <Socials />
     </aside>
@@ -27,60 +17,63 @@ export default ProfileCard;
 
 function Profile() {
   return (
-    <div className="w-full flex flex-col items-center justify-start p-6 gap-1 text-center min-[785px]:relative min-[785px]:z-10 min-[785px]:flex-none min-[785px]:items-start min-[785px]:justify-start min-[785px]:text-left min-[1209px]:static min-[1209px]:items-center min-[1209px]:justify-start min-[1209px]:text-center">
+    <div className="mt-4 flex w-full flex-col items-start justify-start gap-1 text-left">
       <img
         src={profileImage}
         alt="Ace Lowder"
         decoding="async"
-        className="size-48 rounded-full border-6 border-card object-cover"
+        className="size-20 rounded-full object-cover"
       />
-      <h1 className="text-3xl">Ace Lowder</h1>
-      <p>Software Engineer</p>
+      <h1 className="mt-4 text-[1.8rem] font-bold uppercase">
+        Ace Lowder
+      </h1>
+      <p className="text-[2.75rem] font-bold">Full Stack Software Engineer</p>
+      <p className="flex flex-wrap justify-start gap-8 text-gray-500">
+        <span>3+ years of experience</span>
+        <span>4 case studies</span>
+        <span>13 projects shipped</span>
+      </p>
     </div>
   );
 }
 
 function Socials() {
   return (
-    <div className="z-10 flex flex-col items-center justify-center gap-6 px-6 pb-6 min-[785px]:absolute min-[785px]:bottom-6 min-[785px]:right-6 min-[785px]:flex-row min-[785px]:p-0 min-[1209px]:static min-[1209px]:flex-col min-[1209px]:p-6">
-      <nav
-        aria-label="Social links"
-        className="flex gap-4"
+    <div className="flex flex-col items-start gap-3 md:flex-row md:items-center">
+      <a
+        href="/ace-lowder-resume.pdf"
+        download="Ace-Lowder-Resume.pdf"
+        className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-full bg-black px-5 text-xs font-semibold text-white transition-opacity hover:opacity-80 focus-visible:opacity-90"
       >
-        <a
-          href="https://github.com/ace-lowder"
-          target="_blank"
-          rel="noreferrer"
-          aria-label="Open Ace Lowder on GitHub"
-          className="cursor-pointer rounded p-1 text-primary transition-colors hover:bg-gray-200 focus-visible:bg-gray-50"
-        >
-          <FaGithub className="size-6 scale-90" aria-hidden="true" />
-        </a>
+        <FiDownload className="size-4" strokeWidth={2.5} aria-hidden="true" />
+        Download Resume
+      </a>
+      <nav aria-label="Social links" className="flex gap-2">
         <a
           href="https://www.linkedin.com/in/ace-lowder/"
           target="_blank"
           rel="noreferrer"
           aria-label="Open Ace Lowder on LinkedIn"
-          className="cursor-pointer rounded p-1 text-primary transition-colors hover:bg-gray-200 focus-visible:bg-gray-50"
+          className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-full border border-gray-200 px-5 text-xs font-semibold text-black transition-colors hover:bg-gray-50 focus-visible:bg-gray-50"
         >
-          <FaLinkedin className="size-6 scale-100" aria-hidden="true" />
+          <TbBrandLinkedin
+            className="size-5"
+            strokeWidth={1.5}
+            aria-hidden="true"
+          />
+          LinkedIn
         </a>
         <a
-          href="mailto:ace.lowder@gmail.com"
-          aria-label="Email Ace Lowder"
-          className="cursor-pointer rounded p-1 text-primary transition-colors hover:bg-gray-200 focus-visible:bg-gray-50"
+          href="https://github.com/ace-lowder"
+          target="_blank"
+          rel="noreferrer"
+          aria-label="Open Ace Lowder on GitHub"
+          className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-full border border-gray-200 px-5 text-xs font-semibold text-black transition-colors hover:bg-gray-50 focus-visible:bg-gray-50"
         >
-          <TbMailFilled className="size-6 scale-105" aria-hidden="true" />
+          <FiGithub className="size-4" strokeWidth={2} aria-hidden="true" />
+          GitHub
         </a>
       </nav>
-      <a
-        href="/ace-lowder-resume.pdf"
-        download="Ace-Lowder-Resume.pdf"
-        className="inline-flex cursor-pointer items-center gap-2 rounded-md bg-primary px-5 py-2 font-medium text-white transition-opacity hover:opacity-90 focus-visible:opacity-90"
-      >
-        <TbDownload className="size-5 scale-100" aria-hidden="true" />
-        Download Resume
-      </a>
     </div>
   );
 }

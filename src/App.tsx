@@ -18,11 +18,11 @@ function App() {
   return (
     <>
       {import.meta.env.DEV && <ResponsiveOverlay />}
-      <main className="mx-auto flex w-full max-w-150 flex-col gap-8 px-8 py-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-298 min-[1209px]:flex-row">
+      <main className="mx-auto flex w-full max-w-[1604px] flex-col gap-8 px-6 py-12 md:px-8 xl:px-12">
         <ProfileCard />
         <section
           aria-label="Projects"
-          className="grid min-w-0 flex-1 grid-cols-1 gap-8 min-[785px]:grid-cols-2"
+          className="grid min-w-0 flex-1 grid-cols-1 gap-8 border-t border-gray-200 pt-8 md:grid-cols-2 xl:grid-cols-3"
         >
           {PROJECT_NAMES.map((projectName) => (
             <ProjectCard
