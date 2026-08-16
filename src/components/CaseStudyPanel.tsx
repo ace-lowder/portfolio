@@ -104,17 +104,17 @@ function CaseStudyPanel({
         aria-hidden={!open}
         inert={!open}
         aria-labelledby="case-study-title"
-        className={`fixed inset-x-0 bottom-0 top-0 z-40 overscroll-contain overflow-y-auto bg-white transition-transform duration-300 ease-out motion-reduce:transition-none min-[785px]:top-12 ${
+        className={`fixed inset-x-0 bottom-0 top-0 z-40 overscroll-contain overflow-y-auto bg-[#1e1e1e] transition-transform duration-300 ease-out motion-reduce:transition-none min-[785px]:top-12 ${
           open
             ? "pointer-events-auto translate-y-0"
             : "pointer-events-none translate-y-full"
         }`}
       >
-        <header className="sticky top-0 z-10 bg-white">
+        <header className="sticky top-0 z-10 bg-[#1e1e1e]">
           <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-8 py-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
             <div className="flex min-w-0 flex-1 flex-col gap-1 min-[785px]:flex-row min-[785px]:items-center min-[785px]:justify-between min-[785px]:gap-8">
               <h1 id="case-study-title">{activeProjectDetails?.name}</h1>
-              <p className="text-gray-500 min-[785px]:text-right">
+              <p className="text-[#a0a0a0] min-[785px]:text-right">
                 {activeProjectDetails?.subtitle}
               </p>
             </div>
@@ -122,7 +122,7 @@ function CaseStudyPanel({
               ref={mobileCloseButtonRef}
               type="button"
               aria-label="Close project case study"
-              className="shrink-0 cursor-pointer self-start text-black/60 hover:text-black min-[785px]:hidden"
+              className="shrink-0 cursor-pointer self-start text-[#d4d4d4]/60 hover:text-[#d4d4d4] min-[785px]:hidden"
               onClick={onClose}
             >
               <FiX className="size-6" />
@@ -206,7 +206,7 @@ function CaseStudySection({
               />
             ))}
             {section.bullets.length > 0 ? (
-              <ul className="list-disc space-y-2 pl-6 leading-7 text-gray-700">
+              <ul className="list-disc space-y-2 pl-6 leading-7 text-gray-300">
                 {section.bullets.map((bullet) => (
                   <li key={bullet}>{bullet}</li>
                 ))}
@@ -232,7 +232,7 @@ function CaseStudySection({
             {section.items.map((item) => (
               <div key={item.label} className="space-y-1">
                 <dt className="font-bold">{item.label}</dt>
-                <dd className="leading-6 text-gray-700">
+                <dd className="leading-6 text-gray-300">
                   {item.href ? (
                     <a
                       href={item.href}
@@ -260,7 +260,7 @@ function CaseStudyParagraph({
   paragraph: CaseStudyParagraph;
 }) {
   return (
-    <p className="leading-7 text-gray-700">
+    <p className="leading-7 text-gray-300">
       {paragraph.segments.map((segment, index) =>
         segment.emphasis === "strong" ? (
           <strong key={`${index}-${segment.text}`}>{segment.text}</strong>

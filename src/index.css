@@ -2,13 +2,13 @@
 
 @theme {
   --color-primary: #0e294c;
-  --color-card: #fbf9f7;
-  --color-card-border: #f3ede7;
+  --color-card: #252526;
+  --color-card-border: #3c3c3c;
 }
 
 @layer base {
   body {
-    @apply text-gray-950 antialiased;
+    @apply bg-[#1e1e1e] text-[#d4d4d4] antialiased;
     font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   }
 
