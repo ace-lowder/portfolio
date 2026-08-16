@@ -129,10 +129,10 @@ function CaseStudyPanel({
         </header>
 
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-8 pb-12 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
-          {caseStudy?.coverImage ? (
+          {activeProjectDetails ? (
             <img
-              src={caseStudy.coverImage.src}
-              alt={caseStudy.coverImage.alt}
+              src={activeProjectDetails.cardImage.src}
+              alt={activeProjectDetails.cardImage.alt}
               decoding="async"
               className="block w-full rounded-md"
             />
@@ -195,7 +195,7 @@ function CaseStudySection({
     case "content":
       return (
         <section className="space-y-6">
-          <div className="max-w-3xl space-y-4">
+          <div className="space-y-4">
             <h2>{section.heading}</h2>
             {section.paragraphs.map((paragraph, index) => (
               <CaseStudyParagraph

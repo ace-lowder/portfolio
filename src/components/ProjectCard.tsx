@@ -1,55 +1,80 @@
-import {
-  PROJECTS_BY_NAME,
-  type ProjectName,
-  type ProjectType,
-} from "../content/projects";
-
-const PROJECT_TYPE_STYLES: Record<ProjectType, string> = {
-  Personal: "bg-green-600",
-  Freelance: "bg-blue-600",
-  Work: "bg-red-600",
-};
+import { useState } from "react";
+import { FiGithub } from "react-icons/fi";
+import { PiShareFat } from "react-icons/pi";
+import { PROJECTS_BY_NAME, type ProjectName } from "../content/projects";
 
 function ProjectCard({
   projectName,
-  showProjectType = false,
   onOpen,
 }: {
   projectName: ProjectName;
-  showProjectType?: boolean;
   onOpen: () => void;
 }) {
   const project = PROJECTS_BY_NAME[projectName];
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   return (
-    <button
-      type="button"
-      aria-label={`Open ${project.name} case study`}
-      aria-haspopup="dialog"
-      className="group relative aspect-19/16 cursor-pointer overflow-hidden rounded-md bg-green-200 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-      onClick={onOpen}
+    <article
+      className={`group relative aspect-19/16 overflow-hidden rounded-md text-left ${imageLoaded ? "" : "animate-pulse bg-gray-100"}`}
     >
       <img
         src={project.cardImage.src}
         alt=""
+        loading="lazy"
         decoding="async"
         className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+        onLoad={() => setImageLoaded(true)}
       />
-      {showProjectType ? (
+      <button
+        type="button"
+        aria-label={`Open ${project.name} case study`}
+        aria-haspopup="dialog"
+        className="absolute inset-0 z-10 cursor-pointer focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary"
+        onClick={onOpen}
+      />
+      {project.projectType !== "Personal" ? (
         <span
-          className={`absolute right-3 top-3 rounded-full px-3 py-1 text-xs font-semibold text-white shadow-sm ${PROJECT_TYPE_STYLES[project.projectType]}`}
+          aria-label="Paid project"
+          className="pointer-events-none absolute right-2.5 top-3 z-20 flex size-6 items-center text-sm justify-center rounded-full bg-black/40 font-semibold text-white"
         >
-          {project.projectType}
+          $
         </span>
       ) : null}
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-linear-to-t from-black/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100" />
-      <span
-        aria-hidden="true"
-        className="absolute bottom-4 left-4 flex flex-col text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-visible:opacity-100"
-      >
-        {project.name}
-      </span>
-    </button>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black/40 via-black/20 via-50% to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100" />
+      <div className="pointer-events-none absolute inset-x-4 bottom-3.5 z-20 flex items-center justify-between gap-2 text-white opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100">
+        <span
+          aria-hidden="true"
+          className="min-w-0 flex-1 truncate text-sm font-semibold"
+        >
+          {project.name}
+        </span>
+        <nav
+          aria-label={`${project.name} links`}
+          className="pointer-events-auto flex shrink-0 gap-2"
+        >
+          {project.githubUrl ? (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Open ${project.name} on GitHub`}
+              className="inline-flex size-9 items-center justify-center rounded-full bg-white text-black transition-colors hover:bg-gray-100 focus-visible:bg-gray-50"
+            >
+              <FiGithub className="size-4" strokeWidth={2} aria-hidden="true" />
+            </a>
+          ) : null}
+          <a
+            href={project.liveUrl}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Open ${project.name} website in a new tab`}
+            className="inline-flex size-9 items-center justify-center rounded-full bg-white text-black transition-colors hover:bg-gray-100 focus-visible:bg-gray-50"
+          >
+            <PiShareFat className="size-5" aria-hidden="true" />
+          </a>
+        </nav>
+      </div>
+    </article>
   );
 }
 export default ProjectCard;

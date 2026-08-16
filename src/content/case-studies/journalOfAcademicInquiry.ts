@@ -1,6 +1,4 @@
-import journalOfAcademicInquiryCoverImage from "../../assets/case-studies/journal-of-academic-inquiry/cover.png";
 import journalOfAcademicInquiryImpactImage from "../../assets/case-studies/journal-of-academic-inquiry/impact.png";
-import journalOfAcademicInquiryPaymentFlowImage from "../../assets/case-studies/journal-of-academic-inquiry/payment-flow.png";
 import {
   normal,
   paragraph,
@@ -9,10 +7,6 @@ import {
 } from "../caseStudy";
 
 export const journalOfAcademicInquiryCaseStudy: CaseStudy = {
-  coverImage: {
-    src: journalOfAcademicInquiryCoverImage,
-    alt: "Journal of Academic Inquiry website shown across desktop and mobile screens.",
-  },
   sections: [
     {
       id: "problem-and-role",
@@ -101,10 +95,7 @@ export const journalOfAcademicInquiryCaseStudy: CaseStudy = {
         ),
       ],
       bullets: [],
-      image: {
-        src: journalOfAcademicInquiryPaymentFlowImage,
-        alt: "Four-step enrollment flow: a student signs up, pays with PayPal, the server verifies payment, and confirmation emails are sent.",
-      },
+      image: null,
     },
     {
       id: "ongoing-maintenance",
