@@ -63,15 +63,17 @@ function ProjectCard({
               <FiGithub className="size-4" strokeWidth={2} aria-hidden="true" />
             </a>
           ) : null}
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={`Open ${project.name} website in a new tab`}
-            className="inline-flex size-9 items-center justify-center rounded-full bg-white text-black transition-colors hover:bg-gray-100 focus-visible:bg-gray-50"
-          >
-            <PiShareFat className="size-5" aria-hidden="true" />
-          </a>
+          {project.liveUrl ? (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label={`Open ${project.name} website in a new tab`}
+              className="inline-flex size-9 items-center justify-center rounded-full bg-white text-black transition-colors hover:bg-gray-100 focus-visible:bg-gray-50"
+            >
+              <PiShareFat className="size-5" aria-hidden="true" />
+            </a>
+          ) : null}
         </nav>
       </div>
     </article>
