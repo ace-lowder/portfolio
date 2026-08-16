@@ -2,6 +2,7 @@ import aiOrNotCardImage from "../assets/case-studies/ai-or-not/card.png";
 import diffCardImage from "../assets/case-studies/diff/card.png";
 import instantMarketValueCardImage from "../assets/case-studies/instant-market-value/card.png";
 import journalOfAcademicInquiryCardImage from "../assets/case-studies/journal-of-academic-inquiry/card.png";
+import onTrackCardImage from "../assets/case-studies/on-track/card.png";
 import prepPathwaysCardImage from "../assets/case-studies/prep-pathways/card.png";
 import updateTagsCardImage from "../assets/case-studies/update-tags/card.png";
 import { type CaseStudy, type ProjectImage } from "./caseStudy";
@@ -9,6 +10,7 @@ import { aiOrNotCaseStudy } from "./case-studies/aiOrNot";
 import { diffCaseStudy } from "./case-studies/diff";
 import { instantMarketValueCaseStudy } from "./case-studies/instantMarketValue";
 import { journalOfAcademicInquiryCaseStudy } from "./case-studies/journalOfAcademicInquiry";
+import { onTrackCaseStudy } from "./case-studies/onTrack";
 import { prepPathwaysCaseStudy } from "./case-studies/prepPathways";
 import { updateTagsCaseStudy } from "./case-studies/updateTags";
 
@@ -19,6 +21,7 @@ export const PROJECT_NAMES = [
   "Instant Market Value",
   "AI or Not",
   "Prep Pathways",
+  "On Track",
 ] as const;
 
 export type ProjectName = (typeof PROJECT_NAMES)[number];
@@ -27,7 +30,7 @@ export type ProjectType = "Personal" | "Freelance" | "Work";
 type ProjectMetadata = {
   name: ProjectName;
   path: `/${string}`;
-  liveUrl: `http://${string}` | `https://${string}`;
+  liveUrl?: `http://${string}` | `https://${string}`;
   githubUrl?: `https://github.com/${string}`;
   projectType: ProjectType;
   subtitle: string;
@@ -110,6 +113,18 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
       alt: "Prep Pathways college counseling website shown across several pages.",
     },
     caseStudy: prepPathwaysCaseStudy,
+  },
+  "On Track": {
+    name: "On Track",
+    path: "/on-track",
+    githubUrl: "https://github.com/ace-lowder/on-track",
+    projectType: "Personal",
+    subtitle: "Codex agent status tracker",
+    cardImage: {
+      src: onTrackCardImage,
+      alt: "On Track showing Codex agent statuses in the VS Code status bar.",
+    },
+    caseStudy: onTrackCaseStudy,
   },
 };
 
