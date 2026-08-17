@@ -8,7 +8,6 @@ import {
   PROJECTS_BY_NAME,
   type ProjectName,
 } from "./content/projects";
-import ResponsiveOverlay from "./components/ResponsiveOverlay";
 
 const PORTFOLIO_TITLE = "Ace Lowder | Software Engineer";
 
@@ -17,7 +16,6 @@ function App() {
 
   return (
     <>
-      {import.meta.env.DEV && <ResponsiveOverlay />}
       <main className="mx-auto flex w-full max-w-[1604px] flex-col gap-8 px-6 py-12 md:px-8 xl:px-12">
         <ProfileCard />
         <section
