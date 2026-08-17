@@ -90,10 +90,10 @@ function CaseStudyPanel({
         onClick={onClose}
       >
         <FiX
-          className={`absolute right-4 top-3 size-6 text-white/60 transition-transform duration-300 ease-out motion-reduce:transition-none ${
+          className={`absolute right-4 top-3 size-6 text-white transition-[transform,opacity] duration-300 ease-out motion-reduce:transition-none ${
             open
-              ? "translate-y-0 hover:text-white group-focus-visible:text-white"
-              : "translate-y-[calc(100vh-3rem)]"
+              ? "translate-y-0 opacity-100"
+              : "translate-y-[calc(100vh-3rem)] opacity-0"
           }`}
         />
       </button>
