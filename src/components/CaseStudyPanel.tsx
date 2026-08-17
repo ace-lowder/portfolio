@@ -84,7 +84,7 @@ function CaseStudyPanel({
         aria-label="Close project case study"
         className={`group fixed inset-0 z-30 hidden cursor-pointer transition-colors duration-300 motion-reduce:transition-none min-[785px]:block ${
           open
-            ? "pointer-events-auto bg-gray-900/70"
+            ? "pointer-events-auto bg-[#111111]/70"
             : "pointer-events-none bg-transparent"
         }`}
         onClick={onClose}
@@ -111,9 +111,11 @@ function CaseStudyPanel({
         }`}
       >
         <header className="sticky top-0 z-10 bg-[#1e1e1e]">
-          <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-8 py-8 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
+          <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-8 py-6 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
             <div className="flex min-w-0 flex-1 flex-col gap-1 min-[785px]:flex-row min-[785px]:items-center min-[785px]:justify-between min-[785px]:gap-8">
-              <h1 id="case-study-title">{activeProjectDetails?.name}</h1>
+              <h1 id="case-study-title" className="text-white">
+                {activeProjectDetails?.name}
+              </h1>
               <p className="text-[#a0a0a0] min-[785px]:text-right">
                 {activeProjectDetails?.subtitle}
               </p>
@@ -130,20 +132,22 @@ function CaseStudyPanel({
           </div>
         </header>
 
-        <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-8 pb-12 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-8 pb-24 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
           {activeProjectDetails ? (
-            <img
-              src={activeProjectDetails.cardImage.src}
-              alt={activeProjectDetails.cardImage.alt}
-              decoding="async"
-              className="block w-full rounded-md"
-            />
+            <div className="aspect-4/3 overflow-hidden rounded-md">
+              <img
+                src={activeProjectDetails.cardImage.src}
+                alt={activeProjectDetails.cardImage.alt}
+                decoding="async"
+                className="block size-full object-cover object-center"
+              />
+            </div>
           ) : null}
-          {caseStudy ? (
-            caseStudy.sections.map((section) => (
-              <CaseStudySection key={section.id} section={section} />
-            ))
-          ) : null}
+          {caseStudy
+            ? caseStudy.sections.map((section) => (
+                <CaseStudySection key={section.id} section={section} />
+              ))
+            : null}
 
           {otherProjectNames.length > 0 ? (
             <section
@@ -172,11 +176,7 @@ function CaseStudyPanel({
 
 export default CaseStudyPanel;
 
-function CaseStudySection({
-  section,
-}: {
-  section: CaseStudySectionData;
-}) {
+function CaseStudySection({ section }: { section: CaseStudySectionData }) {
   switch (section.type) {
     case "split":
       return (
@@ -254,11 +254,7 @@ function CaseStudySection({
   }
 }
 
-function CaseStudyParagraph({
-  paragraph,
-}: {
-  paragraph: CaseStudyParagraph;
-}) {
+function CaseStudyParagraph({ paragraph }: { paragraph: CaseStudyParagraph }) {
   return (
     <p className="leading-7 text-gray-300">
       {paragraph.segments.map((segment, index) =>
