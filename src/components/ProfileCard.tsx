@@ -24,11 +24,13 @@ function Profile() {
         decoding="async"
         className="size-20 rounded-full object-cover"
       />
-      <h1 className="mt-4 text-[1.8rem] font-bold uppercase">
+      <h1 className="mt-4 text-[1.8rem] font-bold uppercase text-white">
         Ace Lowder
       </h1>
-      <p className="text-[2.75rem] font-bold">Full Stack Software Engineer</p>
-      <p className="flex flex-wrap justify-start gap-8 text-gray-500">
+      <p className="text-[2.75rem] font-bold text-white">
+        Full Stack Software Engineer
+      </p>
+      <p className="flex flex-wrap justify-start gap-8 text-[#a0a0a0]">
         <span>3+ years of experience</span>
         <span>4 case studies</span>
         <span>13 projects shipped</span>
@@ -43,7 +45,7 @@ function Socials() {
       <a
         href="/ace-lowder-resume.pdf"
         download="Ace-Lowder-Resume.pdf"
-        className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-full bg-black px-5 text-xs font-semibold text-white transition-opacity hover:opacity-80 focus-visible:opacity-90"
+        className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-full bg-white px-5 text-xs font-semibold text-[#1e1e1e] transition-opacity hover:opacity-80 focus-visible:opacity-90"
       >
         <FiDownload className="size-4" strokeWidth={2.5} aria-hidden="true" />
         Download Resume
@@ -54,7 +56,7 @@ function Socials() {
           target="_blank"
           rel="noreferrer"
           aria-label="Open Ace Lowder on LinkedIn"
-          className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-full border border-gray-200 px-5 text-xs font-semibold text-black transition-colors hover:bg-gray-50 focus-visible:bg-gray-50"
+          className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-full border border-[#3c3c3c] px-5 text-xs font-semibold text-[#d4d4d4] transition-colors hover:bg-[#2a2d2e] focus-visible:bg-[#2a2d2e]"
         >
           <TbBrandLinkedin
             className="size-5"
@@ -68,7 +70,7 @@ function Socials() {
           target="_blank"
           rel="noreferrer"
           aria-label="Open Ace Lowder on GitHub"
-          className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-full border border-gray-200 px-5 text-xs font-semibold text-black transition-colors hover:bg-gray-50 focus-visible:bg-gray-50"
+          className="inline-flex h-12 cursor-pointer items-center gap-2 rounded-full border border-[#3c3c3c] px-5 text-xs font-semibold text-[#d4d4d4] transition-colors hover:bg-[#2a2d2e] focus-visible:bg-[#2a2d2e]"
         >
           <FiGithub className="size-4" strokeWidth={2} aria-hidden="true" />
           GitHub
