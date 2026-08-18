@@ -1,9 +1,11 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiX } from "react-icons/fi";
+import CaseStudyCoverMeta from "./CaseStudyCoverMeta";
 import ProjectCard from "./ProjectCard";
 import {
   type CaseStudyParagraph,
   type CaseStudySection as CaseStudySectionData,
+  type CaseStudyTextSegment,
 } from "../content/caseStudy";
 import {
   PROJECT_NAMES,
@@ -23,6 +25,12 @@ function CaseStudyPanel({
   const panelRef = useRef<HTMLElement>(null);
   const desktopCloseButtonRef = useRef<HTMLButtonElement>(null);
   const mobileCloseButtonRef = useRef<HTMLButtonElement>(null);
+  const previewCloseButtonRef = useRef<HTMLButtonElement>(null);
+  const previewImageRef = useRef<{ src: string; alt: string } | null>(null);
+  const [previewImage, setPreviewImage] = useState<{
+    src: string;
+    alt: string;
+  } | null>(null);
   const open = activeProject !== null;
   const activeProjectDetails = activeProject
     ? PROJECTS_BY_NAME[activeProject]
@@ -31,6 +39,14 @@ function CaseStudyPanel({
   const otherProjectNames = PROJECT_NAMES.filter(
     (projectName) => projectName !== activeProject,
   );
+
+  useEffect(() => {
+    previewImageRef.current = previewImage;
+  }, [previewImage]);
+
+  useEffect(() => {
+    if (previewImage) previewCloseButtonRef.current?.focus();
+  }, [previewImage]);
 
   useEffect(() => {
     if (!open) return;
@@ -48,7 +64,17 @@ function CaseStudyPanel({
 
     function handleKeyDown(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        onClose();
+        if (previewImageRef.current) {
+          setPreviewImage(null);
+        } else {
+          onClose();
+        }
+        return;
+      }
+
+      if (event.key === "Tab" && previewImageRef.current) {
+        event.preventDefault();
+        previewCloseButtonRef.current?.focus();
         return;
       }
 
@@ -74,6 +100,7 @@ function CaseStudyPanel({
     if (!activeProject) return;
 
     panelRef.current?.scrollTo({ top: 0 });
+    setPreviewImage(null);
   }, [activeProject]);
 
   return (
@@ -117,7 +144,7 @@ function CaseStudyPanel({
                 {activeProjectDetails?.name}
               </h1>
               <p className="text-[#a0a0a0] min-[785px]:text-right">
-                {activeProjectDetails?.subtitle}
+                {renderSubtitle(activeProjectDetails?.subtitle)}
               </p>
             </div>
             <button
@@ -132,27 +159,37 @@ function CaseStudyPanel({
           </div>
         </header>
 
-        <div className="mx-auto flex w-full max-w-5xl flex-col gap-12 px-8 pb-24 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
+        <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-8 pb-24 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
           {activeProjectDetails ? (
-            <div className="aspect-4/3 overflow-hidden rounded-md">
-              <img
-                src={activeProjectDetails.cardImage.src}
-                alt={activeProjectDetails.cardImage.alt}
-                decoding="async"
-                className="block size-full object-cover object-center"
+            <div className="space-y-6">
+              <div className="aspect-4/3 overflow-hidden rounded-md">
+                <img
+                  src={activeProjectDetails.cardImage.src}
+                  alt={activeProjectDetails.cardImage.alt}
+                  decoding="async"
+                  className="block size-full object-cover object-center"
+                />
+              </div>
+              <CaseStudyCoverMeta
+                action={activeProjectDetails.caseStudyAction}
+                technologies={activeProjectDetails.caseStudyTechnologies}
               />
             </div>
           ) : null}
           {caseStudy
             ? caseStudy.sections.map((section) => (
-                <CaseStudySection key={section.id} section={section} />
+                <CaseStudySection
+                  key={section.id}
+                  section={section}
+                  onPreviewImage={setPreviewImage}
+                />
               ))
             : null}
 
           {otherProjectNames.length > 0 ? (
             <section
               aria-labelledby="more-projects-heading"
-              className="hidden pt-18 min-[785px]:block"
+              className="hidden pt-20 min-[785px]:block"
             >
               <h2 id="more-projects-heading" className="mb-6">
                 More projects
@@ -170,13 +207,51 @@ function CaseStudyPanel({
           ) : null}
         </div>
       </section>
+      {previewImage ? (
+        <section
+          role="dialog"
+          aria-modal="true"
+          aria-label="Expanded impact image"
+          className="fixed inset-0 z-50 flex items-center justify-center p-6 min-[785px]:p-12"
+        >
+          <button
+            type="button"
+            aria-label="Close expanded image"
+            tabIndex={-1}
+            className="absolute inset-0 cursor-pointer bg-[#111111]/90"
+            onClick={() => setPreviewImage(null)}
+          />
+          <div className="relative z-10 max-h-full max-w-full scale-90">
+            <img
+              src={previewImage.src}
+              alt={previewImage.alt}
+              className="block max-h-[calc(100vh-3rem)] max-w-full rounded-md object-contain min-[785px]:max-h-[calc(100vh-6rem)]"
+            />
+            <button
+              type="button"
+              ref={previewCloseButtonRef}
+              aria-label="Close expanded image"
+              className="absolute right-3 top-3 flex size-9 cursor-pointer items-center justify-center rounded-full bg-[#1e1e1e]/90 text-white transition-colors hover:bg-[#252526] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              onClick={() => setPreviewImage(null)}
+            >
+              <FiX className="size-5" />
+            </button>
+          </div>
+        </section>
+      ) : null}
     </>
   );
 }
 
 export default CaseStudyPanel;
 
-function CaseStudySection({ section }: { section: CaseStudySectionData }) {
+function CaseStudySection({
+  section,
+  onPreviewImage,
+}: {
+  section: CaseStudySectionData;
+  onPreviewImage: (image: { src: string; alt: string }) => void;
+}) {
   switch (section.type) {
     case "split":
       return (
@@ -185,10 +260,11 @@ function CaseStudySection({ section }: { section: CaseStudySectionData }) {
             <div key={column.heading} className="space-y-4">
               <h2>{column.heading}</h2>
               {column.paragraphs.map((paragraph, index) => (
-                <CaseStudyParagraph
-                  key={`${column.heading}-${index}`}
-                  paragraph={paragraph}
-                />
+              <CaseStudyParagraph
+                key={`${column.heading}-${index}`}
+                paragraph={paragraph}
+                onPreviewImage={onPreviewImage}
+              />
               ))}
             </div>
           ))}
@@ -196,13 +272,38 @@ function CaseStudySection({ section }: { section: CaseStudySectionData }) {
       );
     case "content":
       return (
-        <section className="space-y-6">
-          <div className="space-y-4">
-            <h2>{section.heading}</h2>
+        <section
+          className={
+            section.imageLayout === "float-left" ? "flow-root" : "space-y-6"
+          }
+        >
+          <div
+            className={
+              section.imageLayout === "float-left" ? "flow-root" : "space-y-4"
+            }
+          >
+            {section.image && section.imageLayout === "float-left" ? (
+              <button
+                type="button"
+                aria-label={`Expand ${section.image.alt}`}
+                className="mb-5 block w-full cursor-zoom-in rounded-md max-[784px]:float-none min-[785px]:float-left min-[785px]:mb-4 min-[785px]:mr-6 min-[785px]:w-1/2 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                onClick={() => onPreviewImage(section.image!)}
+              >
+                <img
+                  src={section.image.src}
+                  alt={section.image.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="block w-full rounded-md"
+                />
+              </button>
+            ) : null}
+            {section.heading ? <h2>{section.heading}</h2> : null}
             {section.paragraphs.map((paragraph, index) => (
               <CaseStudyParagraph
                 key={`${section.id}-paragraph-${index}`}
                 paragraph={paragraph}
+                onPreviewImage={onPreviewImage}
               />
             ))}
             {section.bullets.length > 0 ? (
@@ -213,14 +314,21 @@ function CaseStudySection({ section }: { section: CaseStudySectionData }) {
               </ul>
             ) : null}
           </div>
-          {section.image ? (
-            <img
-              src={section.image.src}
-              alt={section.image.alt}
-              loading="lazy"
-              decoding="async"
-              className="block w-full rounded-md"
-            />
+          {section.image && section.imageLayout !== "float-left" ? (
+            <button
+              type="button"
+              aria-label={`Expand ${section.image.alt}`}
+              className="block w-full cursor-zoom-in rounded-md focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              onClick={() => onPreviewImage(section.image!)}
+            >
+              <img
+                src={section.image.src}
+                alt={section.image.alt}
+                loading="lazy"
+                decoding="async"
+                className="block w-full rounded-md"
+              />
+            </button>
           ) : null}
         </section>
       );
@@ -254,17 +362,47 @@ function CaseStudySection({ section }: { section: CaseStudySectionData }) {
   }
 }
 
-function CaseStudyParagraph({ paragraph }: { paragraph: CaseStudyParagraph }) {
+function CaseStudyParagraph({
+  paragraph,
+  onPreviewImage,
+}: {
+  paragraph: CaseStudyParagraph;
+  onPreviewImage: (image: { src: string; alt: string }) => void;
+}) {
   return (
     <p className="leading-7 text-gray-300">
       {paragraph.segments.map((segment, index) =>
-        segment.emphasis === "strong" ? (
+        segment.previewImage ? (
+          <button
+            key={`${index}-${segment.text}`}
+            type="button"
+            className="cursor-zoom-in underline underline-offset-4 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            aria-label={`View ${segment.text} sales dashboard`}
+            onClick={() => onPreviewImage(segment.previewImage!)}
+          >
+            {segment.text}
+          </button>
+        ) : segment.emphasis === "strong" ? (
           <strong key={`${index}-${segment.text}`}>{segment.text}</strong>
         ) : (
           <span key={`${index}-${segment.text}`}>{segment.text}</span>
         ),
       )}
     </p>
+  );
+}
+
+function renderSubtitle(
+  subtitle: string | readonly CaseStudyTextSegment[] | undefined,
+) {
+  if (typeof subtitle === "string" || !subtitle) return subtitle;
+
+  return subtitle.map((segment, index) =>
+    segment.emphasis === "strong" ? (
+      <strong key={`${index}-${segment.text}`}>{segment.text}</strong>
+    ) : (
+      <span key={`${index}-${segment.text}`}>{segment.text}</span>
+    ),
   );
 }
 

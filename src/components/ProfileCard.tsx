@@ -32,8 +32,7 @@ function Profile() {
       </p>
       <p className="flex flex-wrap justify-start gap-8 text-[#a0a0a0]">
         <span>3+ years of experience</span>
-        <span>4 case studies</span>
-        <span>13 projects shipped</span>
+        <span>7 case studies</span>
       </p>
     </div>
   );

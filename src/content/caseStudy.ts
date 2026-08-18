@@ -6,6 +6,7 @@ export type ProjectImage = {
 export type CaseStudyTextSegment = {
   text: string;
   emphasis: "normal" | "strong";
+  previewImage?: ProjectImage;
 };
 
 export type CaseStudyParagraph = {
@@ -24,10 +25,11 @@ export type CaseStudySection =
   | {
       id: string;
       type: "content";
-      heading: string;
+      heading?: string;
       paragraphs: CaseStudyParagraph[];
       bullets: string[];
       image: ProjectImage | null;
+      imageLayout?: "below" | "float-left";
     }
   | {
       id: string;
@@ -52,6 +54,15 @@ export const normal = (text: string): CaseStudyTextSegment => ({
 export const strong = (text: string): CaseStudyTextSegment => ({
   text,
   emphasis: "strong",
+});
+
+export const imagePreview = (
+  text: string,
+  previewImage: ProjectImage,
+): CaseStudyTextSegment => ({
+  text,
+  emphasis: "normal",
+  previewImage,
 });
 
 export const paragraph = (

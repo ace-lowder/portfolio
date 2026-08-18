@@ -32,12 +32,21 @@ function ProjectCard({
         className="absolute inset-0 z-10 cursor-pointer focus-visible:outline-none"
         onClick={onOpen}
       />
-      {project.projectType !== "Personal" ? (
+      {project.projectType !== "Personal" && project.impactLabel ? (
         <span
-          aria-label="Paid project"
-          className="pointer-events-none absolute right-2.5 top-3 z-20 flex size-6 items-center text-sm justify-center rounded-full bg-[#1e1e1e]/70 font-semibold text-[#d4d4d4]"
+          tabIndex={0}
+          aria-describedby={`impact-${projectName}`}
+          aria-label={`Project impact: ${project.impactLabel}`}
+          className="group/impact absolute right-2.5 top-3 z-20 flex size-6 cursor-help items-center justify-center rounded-full bg-[#1e1e1e]/70 text-sm font-semibold text-[#d4d4d4] transition-colors hover:bg-[#252526] focus-visible:bg-[#252526] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
         >
           $
+          <span
+            id={`impact-${projectName}`}
+            role="tooltip"
+            className="pointer-events-none absolute right-0 top-[calc(100%+0.5rem)] w-max rounded-md bg-[#252526] px-3 py-2 text-xs font-medium text-white opacity-0 shadow-lg transition-opacity duration-150 group-hover/impact:opacity-100 group-focus-visible/impact:opacity-100"
+          >
+            {project.impactLabel}
+          </span>
         </span>
       ) : null}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-linear-to-t from-black/50 via-black/30 via-50% to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-has-[a:focus-visible]:opacity-100" />
