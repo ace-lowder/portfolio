@@ -241,7 +241,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
     ],
     caseStudyAction: {
       label: "View Extension",
-      href: "https://www.google.com/",
+      href: "https://marketplace.visualstudio.com/items?itemName=ace-lowder.on-track",
     },
     caseStudyTechnologies: [
       { name: "VS Code" },
