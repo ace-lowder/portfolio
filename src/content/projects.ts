@@ -119,7 +119,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
     path: "/journal-of-academic-inquiry",
     liveUrl: "https://journalofinquiry.org/",
     projectType: "Freelance",
-    impactLabel: "$121,000 ARR (YTD)",
+    impactLabel: "$121,000 ARR",
     subtitle: [strong("website"), normal(" for academic journal client")],
     caseStudyAction: {
       label: "View Live Site",

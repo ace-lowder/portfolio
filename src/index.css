@@ -7,6 +7,10 @@
 }
 
 @layer base {
+  html {
+    scrollbar-gutter: stable;
+  }
+
   body {
     @apply bg-[#1e1e1e] text-[#d4d4d4] antialiased;
     font-family: "Mona Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
