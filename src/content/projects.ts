@@ -60,13 +60,13 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   UpdateTags: {
     name: "UpdateTags",
     path: "/update-tags",
-    liveUrl: "https://tagloom.app/",
-    githubUrl: "https://github.com/ace-lowder/tagloom",
+    liveUrl: "https://updatetags.com/",
+    githubUrl: "https://github.com/ace-lowder/updatetags",
     projectType: "Personal",
     subtitle: [strong("saas"), normal(" for improving Etsy listings")],
     caseStudyAction: {
       label: "View Live Site",
-      href: "https://tagloom.app/",
+      href: "https://updatetags.com/",
     },
     caseStudyTechnologies: [
       { name: "Next.js" },
@@ -92,13 +92,13 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   Diff: {
     name: "Diff",
     path: "/diff",
-    liveUrl: "http://diffedit.com/",
+    liveUrl: "https://diffedit.com/",
     githubUrl: "https://github.com/ace-lowder/diff",
     projectType: "Personal",
     subtitle: [strong("text editor"), normal(" for comparing drafts")],
     caseStudyAction: {
       label: "View Live Site",
-      href: "http://diffedit.com/",
+      href: "https://diffedit.com/",
     },
     caseStudyTechnologies: [
       { name: "React" },
