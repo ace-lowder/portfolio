@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="White spade with black outline">
+  <filter id="outside-outline" x="-10%" y="-10%" width="120%" height="120%">
+    <feMorphology in="SourceAlpha" operator="dilate" radius="1.5" result="expanded" />
+    <feFlood flood-color="#000" result="black" />
+    <feComposite in="black" in2="expanded" operator="in" result="outline" />
+    <feMerge>
+      <feMergeNode in="outline" />
+      <feMergeNode in="SourceGraphic" />
+    </feMerge>
+  </filter>
+  <path
+    fill="#fff"
+    filter="url(#outside-outline)"
+    d="M32 4C23 18 10 26 7 36c-4 14 6 21 16 17 4-2 6-5 7-7 0 6-2 11-6 14h16c-4-3-6-8-6-14 1 2 3 5 7 7 10 4 20-3 16-17C54 26 41 18 32 4Z"
+  />
+</svg>
