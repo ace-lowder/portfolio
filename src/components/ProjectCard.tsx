@@ -77,7 +77,7 @@ function ProjectCard({
               href={project.liveUrl}
               target="_blank"
               rel="noreferrer"
-              aria-label={`Open ${project.name} website in a new tab`}
+              aria-label={`Open ${project.name} ${project.liveUrlLabel ?? "website"} in a new tab`}
               className="inline-flex size-9 items-center justify-center rounded-full bg-white text-[#1e1e1e] transition-colors hover:bg-[#d4d4d4] focus-visible:bg-[#d4d4d4]"
             >
               <PiShareFat className="size-5" aria-hidden="true" />

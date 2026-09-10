@@ -8,7 +8,7 @@ export const diffCaseStudy: CaseStudy = {
       paragraphs: [
         paragraph(
           normal(
-            "Diff is a text editor for writers to compare a draft with a revision and quickly see what changed. I built it as a solo project for my own fiction writing, with side-by-side editing and highlighting for added, removed, and rewritten text. Everything runs in the browser, so drafts stay on the user’s device instead of being uploaded to a server. I use Diff regularly in my own writing workflow and continue improving it based on problems I run into while editing. It’s free for anyone to use.",
+            "Diff is a browser-based text editor I built for comparing drafts and revisions while writing fiction. I designed the comparison logic myself with custom rules for identifying added, removed, and rewritten text, then kept refining the editor around problems I ran into while using it. Features include side-by-side comparison, line wrapping controls, adjustable layout, copy-by-line-number, and other small workflow improvements. Everything runs locally in the browser, so drafts stay on the user’s device and the tool works quickly across desktop and mobile. I still use Diff regularly and continue improving it based on my own writing workflow.",
           ),
         ),
       ],

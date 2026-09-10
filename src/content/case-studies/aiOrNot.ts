@@ -8,7 +8,7 @@ export const aiOrNotCaseStudy: CaseStudy = {
       paragraphs: [
         paragraph(
           normal(
-            "AI or Not is a browser game where players guess whether YouTube comments are real or AI-generated. I built it as a personal project, including the scoring, feedback, comment-loading system, and responsive game interface for desktop and mobile. The app mixes real YouTube comments with AI-generated alternatives and caches comments locally so rounds can start without waiting on new API requests. I also focused heavily on animations and interaction details so it feels fun to play.",
+            "AI or Not is a browser game where players guess whether YouTube comments are real or AI-generated. I built the game logic, scoring, feedback, responsive interface, and comment-loading system, then tuned the AI prompts to generate comments that feel believable next to real YouTube comments. As players score more points, the generated comments become harder to distinguish from the real ones. I also focused heavily on animation, pacing, and interaction details so the game feels smooth and fun across desktop and mobile. Real comments are cached locally to reduce repeat API requests and keep rounds loading quickly.",
           ),
         ),
       ],

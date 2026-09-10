@@ -25,9 +25,9 @@ export const PROJECT_NAMES = [
   "Journal of Academic Inquiry",
   "Prep Pathways",
   "UpdateTags",
+  "On Track",
   "Diff",
   "AI or Not",
-  "On Track",
 ] as const;
 
 export type ProjectName = (typeof PROJECT_NAMES)[number];
@@ -46,6 +46,7 @@ type ProjectMetadata = {
   name: ProjectName;
   path: `/${string}`;
   liveUrl?: `http://${string}` | `https://${string}`;
+  liveUrlLabel?: string;
   githubUrl?: `https://github.com/${string}`;
   projectType: ProjectType;
   impactLabel?: string;
@@ -119,7 +120,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
     path: "/journal-of-academic-inquiry",
     liveUrl: "https://journalofinquiry.org/",
     projectType: "Freelance",
-    impactLabel: "$121,000 ARR",
+    impactLabel: "$121,000 ARR (YTD)",
     subtitle: [strong("website"), normal(" for academic journal client")],
     caseStudyAction: {
       label: "View Live Site",
@@ -233,6 +234,9 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   "On Track": {
     name: "On Track",
     path: "/on-track",
+    liveUrl:
+      "https://marketplace.visualstudio.com/items?itemName=ace-lowder.on-track",
+    liveUrlLabel: "extension in the Visual Studio Marketplace",
     githubUrl: "https://github.com/ace-lowder/on-track",
     projectType: "Personal",
     subtitle: [

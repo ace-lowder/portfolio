@@ -20,9 +20,9 @@ export const journalOfAcademicInquiryCaseStudy: CaseStudy = {
       paragraphs: [
         paragraph(
           normal(
-            "The Journal of Academic Inquiry is a website where students can enroll in writing coaching courses and submit articles for publication. I built and continue to maintain the site as the sole developer. The enrollment flow includes PayPal checkout that preserves student information through the redirect and restores it when they return, then sends automated confirmation emails through Gmail to both the student and client. The site also hosts published journal issues and more than 90 student articles. In the two years since launch, the platform has supported over ",
+            "The Journal of Academic Inquiry is a website where students can enroll in writing coaching courses and submit articles for publication. I built and continue to maintain the platform as the sole developer, owning the enrollment flow, payments, email automation, and published content. The site uses PayPal checkout while preserving student information through the redirect and restoring it when they return, then sends automated confirmation emails through Gmail to both the student and client. It also hosts published journal issues and more than 90 student articles. In the two years since launch, the platform has supported ",
           ),
-          strong("$190,000 in client sales"),
+          strong("over $190,000 in client sales"),
           normal(" on "),
           imagePreview("PayPal", paypalSalesImage),
           normal("."),
