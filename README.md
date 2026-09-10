@@ -1,8 +1,10 @@
 # Ace Lowder Portfolio
 
-Ace Lowder's software engineering portfolio presents four full-stack product case studies.
+[> View the live portfolio](https://acelowder.com/)
 
-## Run locally
+This repo contains my portfolio site, a static React app with seven case studies covering production products, client work, and personal tools. Built with TypeScript, Vite, and Tailwind CSS, the site keeps project stories, links, visuals, and case-study copy easy to update without a backend or environment variables.
+
+## Develop locally
 
 You need Git, Node.js 22.12 or newer, and npm.
 
