@@ -28,11 +28,11 @@ function Profile() {
         Ace Lowder
       </h1>
       <p className="text-[2.75rem] font-bold text-white">
-        Full Stack Software Engineer
+        Full Stack Engineer | Technical Leadership
       </p>
-      <p className="flex flex-wrap justify-start gap-8 text-[#a0a0a0]">
-        <span>3+ years of experience</span>
-        <span>7 case studies</span>
+      <p className="flex flex-wrap justify-start text-[#a0a0a0]">
+        I lead technical projects, make key engineering decisions, and solve
+        real business problems with software.
       </p>
     </div>
   );
