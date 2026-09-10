@@ -1,4 +1,4 @@
-import journalOfAcademicInquiryImpactImage from "../../assets/case-studies/journal-of-academic-inquiry/impact.png";
+import journalOfAcademicInquiryImpactImage from "../../assets/case-studies/journal-of-academic-inquiry-impact.png";
 import {
   imagePreview,
   normal,

@@ -1,6 +1,7 @@
 import type { IconType } from "react-icons";
 import { TbBrandAws, TbBrandOpenai, TbBrandVscode } from "react-icons/tb";
 import nodemailerLogo from "../assets/technologies/nodemailer.png";
+import mailerLiteLogo from "../assets/technologies/mailerlite.png";
 import reactPdfLogo from "../assets/technologies/react-pdf.png";
 import {
   SiCodemirror,
@@ -38,7 +39,7 @@ import type {
 type TechnologyBadge = {
   icon?: IconType;
   image?: string;
-  imageMode?: "cropped" | "full";
+  imageMode?: "cropped" | "full" | "mailerLite";
   color: string;
   initials?: string;
 };
@@ -55,6 +56,11 @@ const TECHNOLOGY_BADGES: Record<string, TechnologyBadge> = {
     image: nodemailerLogo,
     imageMode: "cropped",
     color: "bg-[#1e1e1e]",
+  },
+  MailerLite: {
+    image: mailerLiteLogo,
+    imageMode: "mailerLite",
+    color: "bg-white",
   },
   "Tailwind CSS": { icon: SiTailwindcss, color: "bg-[#0f172a] text-[#38bdf8]" },
   PayPal: { icon: SiPaypal, color: "bg-[#003087] text-white" },
@@ -131,6 +137,14 @@ function CaseStudyCoverMeta({
                           src={badge.image}
                           alt=""
                           className="absolute left-0 top-0 w-full max-w-none"
+                        />
+                      </span>
+                    ) : badge.imageMode === "mailerLite" ? (
+                      <span className="relative size-full overflow-hidden">
+                        <img
+                          src={badge.image}
+                          alt=""
+                          className="absolute left-[-200%] top-0 h-full max-w-none"
                         />
                       </span>
                     ) : (

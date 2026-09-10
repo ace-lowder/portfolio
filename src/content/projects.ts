@@ -1,10 +1,11 @@
-import aiOrNotCardImage from "../assets/case-studies/ai-or-not/card.png";
-import diffCardImage from "../assets/case-studies/diff/card.png";
-import instantMarketValueCardImage from "../assets/case-studies/instant-market-value/card.png";
-import journalOfAcademicInquiryCardImage from "../assets/case-studies/journal-of-academic-inquiry/card.png";
-import onTrackCardImage from "../assets/case-studies/on-track/card.png";
-import prepPathwaysCardImage from "../assets/case-studies/prep-pathways/card.png";
-import updateTagsCardImage from "../assets/case-studies/update-tags/card.png";
+import aiOrNotCardImage from "../assets/case-studies/ai-or-not-card.png";
+import diffCardImage from "../assets/case-studies/diff-card.png";
+import instantMarketValueCardImage from "../assets/case-studies/instant-market-value-card.png";
+import journalOfAcademicInquiryCardImage from "../assets/case-studies/journal-of-academic-inquiry-card.png";
+import onTrackCardImage from "../assets/case-studies/on-track-card.png";
+import prepPathwaysCardImage from "../assets/case-studies/prep-pathways-card.png";
+import reelreadsCardImage from "../assets/case-studies/reelreads-card.png";
+import updateTagsCardImage from "../assets/case-studies/update-tags-card.png";
 import {
   normal,
   strong,
@@ -18,6 +19,7 @@ import { instantMarketValueCaseStudy } from "./case-studies/instantMarketValue";
 import { journalOfAcademicInquiryCaseStudy } from "./case-studies/journalOfAcademicInquiry";
 import { onTrackCaseStudy } from "./case-studies/onTrack";
 import { prepPathwaysCaseStudy } from "./case-studies/prepPathways";
+import { reelreadsCaseStudy } from "./case-studies/reelreads";
 import { updateTagsCaseStudy } from "./case-studies/updateTags";
 
 export const PROJECT_NAMES = [
@@ -28,6 +30,7 @@ export const PROJECT_NAMES = [
   "On Track",
   "Diff",
   "AI or Not",
+  "Reelreads",
 ] as const;
 
 export type ProjectName = (typeof PROJECT_NAMES)[number];
@@ -257,6 +260,32 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
       alt: "On Track showing Codex agent statuses in the VS Code status bar.",
     },
     caseStudy: onTrackCaseStudy,
+  },
+  Reelreads: {
+    name: "Reelreads",
+    path: "/reelreads",
+    liveUrl: "https://www.reelreads.club/",
+    githubUrl: "https://github.com/ace-lowder/reelreads",
+    projectType: "Personal",
+    subtitle: [strong("landing site"), normal(" for a local book club")],
+    caseStudyAction: {
+      label: "View Live Site",
+      href: "https://www.reelreads.club/",
+    },
+    caseStudyTechnologies: [
+      { name: "Next.js" },
+      { name: "React" },
+      { name: "JavaScript" },
+      { name: "Node.js" },
+      { name: "Tailwind CSS" },
+      { name: "MailerLite", role: "newsletter" },
+      { name: "Vercel" },
+    ],
+    cardImage: {
+      src: reelreadsCardImage,
+      alt: "Reelreads logo for a local Irvine book club.",
+    },
+    caseStudy: reelreadsCaseStudy,
   },
 };
 
