@@ -1,5 +1,5 @@
-import { mkdir, readFile, writeFile } from "node:fs/promises";
-import { dirname, resolve } from "node:path";
+import { readFile, writeFile } from "node:fs/promises";
+import { resolve } from "node:path";
 import { defineConfig, type Plugin } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
@@ -18,19 +18,25 @@ function caseStudyMetadataPages(): Plugin {
     async writeBundle(outputOptions) {
       const outputDirectory = resolve(outputOptions.dir ?? "dist");
       const indexHtml = await readFile(resolve(outputDirectory, "index.html"), "utf8");
+      const redirectsPath = resolve(outputDirectory, "_redirects");
+      const fallbackRedirect = await readFile(redirectsPath, "utf8");
+      const caseStudyMetadata = Object.values(CASE_STUDY_METADATA);
 
       await Promise.all(
-        Object.values(CASE_STUDY_METADATA).map(async (metadata) => {
+        caseStudyMetadata.map(async (metadata) => {
           const outputPath = resolve(
             outputDirectory,
-            metadata.path.slice(1),
-            "index.html",
+            `${metadata.path.slice(1)}.html`,
           );
 
-          await mkdir(dirname(outputPath), { recursive: true });
           await writeFile(outputPath, replaceSocialMetadata(indexHtml, metadata));
         }),
       );
+
+      const caseStudyRedirects = caseStudyMetadata
+        .map((metadata) => `${metadata.path} ${metadata.path}.html 200!`)
+        .join("\n");
+      await writeFile(redirectsPath, `${caseStudyRedirects}\n${fallbackRedirect}`);
     },
   };
 }
