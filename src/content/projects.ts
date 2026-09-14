@@ -7,6 +7,11 @@ import prepPathwaysCardImage from "../assets/case-studies/prep-pathways-card.png
 import reelreadsCardImage from "../assets/case-studies/reelreads-card.png";
 import updateTagsCardImage from "../assets/case-studies/update-tags-card.png";
 import {
+  CASE_STUDY_METADATA,
+  type ProjectName,
+} from "./projectMetadata";
+export type { ProjectName } from "./projectMetadata";
+import {
   normal,
   strong,
   type CaseStudy,
@@ -31,9 +36,7 @@ export const PROJECT_NAMES = [
   "Diff",
   "AI or Not",
   "Reelreads",
-] as const;
-
-export type ProjectName = (typeof PROJECT_NAMES)[number];
+] as const satisfies readonly ProjectName[];
 export type ProjectType = "Personal" | "Freelance" | "Work";
 export type CaseStudyAction = {
   label: "View Live Site" | "View Extension";
@@ -63,7 +66,7 @@ type ProjectMetadata = {
 export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   UpdateTags: {
     name: "UpdateTags",
-    path: "/update-tags",
+    path: CASE_STUDY_METADATA.UpdateTags.path,
     liveUrl: "https://updatetags.com/",
     githubUrl: "https://github.com/ace-lowder/updatetags",
     projectType: "Personal",
@@ -95,7 +98,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   },
   Diff: {
     name: "Diff",
-    path: "/diff",
+    path: CASE_STUDY_METADATA.Diff.path,
     liveUrl: "https://diffedit.com/",
     githubUrl: "https://github.com/ace-lowder/diff",
     projectType: "Personal",
@@ -120,7 +123,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   },
   "Journal of Academic Inquiry": {
     name: "Journal of Academic Inquiry",
-    path: "/journal-of-academic-inquiry",
+    path: CASE_STUDY_METADATA["Journal of Academic Inquiry"].path,
     liveUrl: "https://journalofinquiry.org/",
     projectType: "Freelance",
     impactLabel: "$121,000 ARR (YTD)",
@@ -148,7 +151,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   },
   "Instant Market Value": {
     name: "Instant Market Value",
-    path: "/instant-market-value",
+    path: CASE_STUDY_METADATA["Instant Market Value"].path,
     liveUrl: "https://www.instantmv.com/",
     projectType: "Work",
     impactLabel: "$31,000 ARR (YTD)",
@@ -181,7 +184,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   },
   "AI or Not": {
     name: "AI or Not",
-    path: "/ai-or-not",
+    path: CASE_STUDY_METADATA["AI or Not"].path,
     liveUrl: "https://aiornot.site/",
     githubUrl: "https://github.com/ace-lowder/ai-or-not",
     projectType: "Personal",
@@ -211,7 +214,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   },
   "Prep Pathways": {
     name: "Prep Pathways",
-    path: "/prep-pathways",
+    path: CASE_STUDY_METADATA["Prep Pathways"].path,
     liveUrl: "https://preppathways.net/",
     projectType: "Freelance",
     impactLabel: "$35,000 ARR (YTD)",
@@ -236,7 +239,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   },
   "On Track": {
     name: "On Track",
-    path: "/on-track",
+    path: CASE_STUDY_METADATA["On Track"].path,
     liveUrl:
       "https://marketplace.visualstudio.com/items?itemName=ace-lowder.on-track",
     liveUrlLabel: "extension in the Visual Studio Marketplace",
@@ -263,7 +266,7 @@ export const PROJECTS_BY_NAME: Record<ProjectName, ProjectMetadata> = {
   },
   Reelreads: {
     name: "Reelreads",
-    path: "/reelreads",
+    path: CASE_STUDY_METADATA.Reelreads.path,
     liveUrl: "https://www.reelreads.club/",
     githubUrl: "https://github.com/ace-lowder/reelreads",
     projectType: "Personal",
