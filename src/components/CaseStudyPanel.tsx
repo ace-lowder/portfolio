@@ -32,12 +32,18 @@ function CaseStudyPanel({
     alt: string;
   } | null>(null);
   const open = activeProject !== null;
-  const activeProjectDetails = activeProject
-    ? PROJECTS_BY_NAME[activeProject]
+  const lastActiveProjectRef = useRef<ProjectName | null>(activeProject);
+  const [, setExitedProjectVersion] = useState(0);
+
+  if (activeProject) lastActiveProjectRef.current = activeProject;
+
+  const displayedProject = activeProject ?? lastActiveProjectRef.current;
+  const activeProjectDetails = displayedProject
+    ? PROJECTS_BY_NAME[displayedProject]
     : null;
   const caseStudy = activeProjectDetails?.caseStudy;
   const otherProjectNames = PROJECT_NAMES.filter(
-    (projectName) => projectName !== activeProject,
+    (projectName) => projectName !== displayedProject,
   );
 
   useEffect(() => {
@@ -136,6 +142,16 @@ function CaseStudyPanel({
             ? "pointer-events-auto translate-y-0"
             : "pointer-events-none translate-y-full"
         }`}
+        onTransitionEnd={(event) => {
+          if (
+            !open &&
+            event.target === event.currentTarget &&
+            event.propertyName === "transform"
+          ) {
+            lastActiveProjectRef.current = null;
+            setExitedProjectVersion((version) => version + 1);
+          }
+        }}
       >
         <header className="sticky top-0 z-10 bg-[#1e1e1e]">
           <div className="mx-auto flex w-full max-w-5xl items-center justify-between px-8 py-6 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
@@ -205,6 +221,16 @@ function CaseStudyPanel({
               </div>
             </section>
           ) : null}
+          <a
+            href="/"
+            className="mt-4 self-center text-sm text-gray-300 hover:underline focus-visible:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            onClick={(event) => {
+              event.preventDefault();
+              onClose();
+            }}
+          >
+            Back to Home
+          </a>
         </div>
       </section>
       {previewImage ? (

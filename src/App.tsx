@@ -62,13 +62,28 @@ function useProjectRoute() {
       : PORTFOLIO_TITLE;
   }, [activeProject]);
 
-  const openProject = useCallback((projectName: ProjectName) => {
-    window.history.pushState(null, "", PROJECTS_BY_NAME[projectName].path);
-    setActiveProject(projectName);
-  }, []);
+  const openProject = useCallback(
+    (projectName: ProjectName) => {
+      const path = PROJECTS_BY_NAME[projectName].path;
+
+      if (activeProject) {
+        window.history.replaceState(window.history.state, "", path);
+      } else {
+        window.history.pushState({ portfolioCaseStudy: true }, "", path);
+      }
+
+      setActiveProject(projectName);
+    },
+    [activeProject],
+  );
 
   const closeProject = useCallback(() => {
-    window.history.pushState(null, "", "/");
+    if (window.history.state?.portfolioCaseStudy) {
+      window.history.back();
+      return;
+    }
+
+    window.history.replaceState(null, "", "/");
     setActiveProject(null);
   }, []);
 
