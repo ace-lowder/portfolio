@@ -24,3 +24,26 @@
     @apply text-xl font-bold leading-tight;
   }
 }
+
+@keyframes case-study-carousel-progress {
+  from { transform: scaleX(0); }
+  to { transform: scaleX(1); }
+}
+
+.case-study-carousel-track {
+  transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.case-study-carousel-track.is-resetting {
+  transition: none;
+}
+
+.case-study-carousel-progress {
+  animation: case-study-carousel-progress 4s linear both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .case-study-carousel-track:not(.is-resetting) {
+    transition-duration: 1ms;
+  }
+}

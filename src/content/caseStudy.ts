@@ -1,6 +1,7 @@
 export type ProjectImage = {
   src: string;
   alt: string;
+  caption: string;
 };
 
 export type CaseStudyTextSegment = {
@@ -45,6 +46,26 @@ export type CaseStudySection =
 export type CaseStudy = {
   sections: CaseStudySection[];
 };
+
+export type CaseStudyHeading =
+  | "Overview"
+  | "Problem"
+  | "My Role"
+  | "Implementation"
+  | "Challenges"
+  | "Results";
+
+export const contentSection = (
+  heading: CaseStudyHeading,
+  ...paragraphs: CaseStudyParagraph[]
+): CaseStudySection => ({
+  id: heading.toLowerCase().replace(" ", "-"),
+  type: "content",
+  heading,
+  paragraphs,
+  bullets: [],
+  image: null,
+});
 
 export const normal = (text: string): CaseStudyTextSegment => ({
   text,

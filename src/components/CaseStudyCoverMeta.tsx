@@ -95,12 +95,12 @@ function CaseStudyCoverMeta({
   action,
   technologies,
 }: {
-  action: CaseStudyAction;
+  action?: CaseStudyAction;
   technologies: readonly CaseStudyTechnology[];
 }) {
   return (
     <section
-      aria-label="Project stack and action"
+      aria-label={action ? "Project stack and action" : "Project stack"}
       className="flex flex-col gap-5 min-[785px]:flex-row min-[785px]:items-center min-[785px]:justify-between"
     >
       <div className="flex flex-wrap items-center gap-x-2 gap-y-2">
@@ -164,14 +164,16 @@ function CaseStudyCoverMeta({
           })}
         </ul>
       </div>
-      <a
-        href={action.href}
-        target="_blank"
-        rel="noreferrer"
-        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-white px-5 text-xs font-semibold text-[#1e1e1e] transition-opacity hover:opacity-80 focus-visible:opacity-90 min-[785px]:w-auto"
-      >
-        {action.label}
-      </a>
+      {action ? (
+        <a
+          href={action.href}
+          target="_blank"
+          rel="noreferrer"
+          className="inline-flex h-12 w-full items-center justify-center rounded-full bg-white px-5 text-xs font-semibold text-[#1e1e1e] transition-opacity hover:opacity-80 focus-visible:opacity-90 min-[785px]:w-auto"
+        >
+          {action.label}
+        </a>
+      ) : null}
     </section>
   );
 }

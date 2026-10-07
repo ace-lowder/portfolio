@@ -1,13 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { FiX } from "react-icons/fi";
+import CaseStudyAtAGlance from "./CaseStudyAtAGlance";
+import CaseStudyCarousel from "./CaseStudyCarousel";
 import CaseStudyCoverMeta from "./CaseStudyCoverMeta";
 import ProjectCard from "./ProjectCard";
 import {
   type CaseStudyParagraph,
   type CaseStudySection as CaseStudySectionData,
   type CaseStudyTextSegment,
+  type ProjectImage,
 } from "../content/caseStudy";
 import {
+  COMPACT_PROJECT_NAMES,
   PROJECT_NAMES,
   PROJECTS_BY_NAME,
   type ProjectName,
@@ -26,11 +30,9 @@ function CaseStudyPanel({
   const desktopCloseButtonRef = useRef<HTMLButtonElement>(null);
   const mobileCloseButtonRef = useRef<HTMLButtonElement>(null);
   const previewCloseButtonRef = useRef<HTMLButtonElement>(null);
-  const previewImageRef = useRef<{ src: string; alt: string } | null>(null);
-  const [previewImage, setPreviewImage] = useState<{
-    src: string;
-    alt: string;
-  } | null>(null);
+  const previewImageRef = useRef<ProjectImage | null>(null);
+  const previewTriggerRef = useRef<HTMLElement | null>(null);
+  const [previewImage, setPreviewImage] = useState<ProjectImage | null>(null);
   const open = activeProject !== null;
   const lastActiveProjectRef = useRef<ProjectName | null>(activeProject);
   const [, setExitedProjectVersion] = useState(0);
@@ -46,6 +48,16 @@ function CaseStudyPanel({
     (projectName) => projectName !== displayedProject,
   );
 
+  const openPreview = (image: ProjectImage) => {
+    previewTriggerRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    setPreviewImage(image);
+  };
+
+  const closePreview = () => {
+    setPreviewImage(null);
+    requestAnimationFrame(() => previewTriggerRef.current?.focus({ preventScroll: true }));
+  };
+
   useEffect(() => {
     previewImageRef.current = previewImage;
   }, [previewImage]);
@@ -57,10 +69,6 @@ function CaseStudyPanel({
   useEffect(() => {
     if (!open) return;
 
-    const previouslyFocusedElement =
-      document.activeElement instanceof HTMLElement
-        ? document.activeElement
-        : null;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     focusVisibleCloseButton(
@@ -72,6 +80,7 @@ function CaseStudyPanel({
       if (event.key === "Escape") {
         if (previewImageRef.current) {
           setPreviewImage(null);
+          requestAnimationFrame(() => previewTriggerRef.current?.focus({ preventScroll: true }));
         } else {
           onClose();
         }
@@ -98,7 +107,7 @@ function CaseStudyPanel({
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousOverflow;
-      previouslyFocusedElement?.focus();
+      document.getElementById("projects")?.focus({ preventScroll: true });
     };
   }, [open, onClose]);
 
@@ -134,8 +143,8 @@ function CaseStudyPanel({
         ref={panelRef}
         role="dialog"
         aria-modal="true"
-        aria-hidden={!open}
-        inert={!open}
+        aria-hidden={!open || Boolean(previewImage)}
+        inert={!open || Boolean(previewImage)}
         aria-labelledby="case-study-title"
         className={`fixed inset-x-0 bottom-0 top-0 z-40 overscroll-contain overflow-y-auto bg-[#1e1e1e] transition-transform duration-300 ease-out motion-reduce:transition-none min-[785px]:top-12 ${
           open
@@ -178,13 +187,19 @@ function CaseStudyPanel({
         <div className="mx-auto flex w-full max-w-5xl flex-col gap-8 px-8 pb-24 min-[785px]:w-3xl min-[785px]:max-w-none min-[1209px]:w-full min-[1209px]:max-w-5xl">
           {activeProjectDetails ? (
             <div className="space-y-6">
-              <div className="aspect-4/3 overflow-hidden rounded-md">
-                <img
-                  src={activeProjectDetails.cardImage.src}
-                  alt={activeProjectDetails.cardImage.alt}
-                  decoding="async"
-                  className="block size-full object-cover object-center"
-                />
+              <div className="grid gap-6 min-[1209px]:grid-cols-[minmax(0,1fr)_14rem]">
+                <CaseStudyAtAGlance details={activeProjectDetails.atAGlance} />
+                <div className="order-2 min-w-0 min-[1209px]:order-1">
+                  <CaseStudyCarousel
+                    key={activeProjectDetails.path}
+                    images={
+                      activeProjectDetails.heroImages ??
+                      Array.from({ length: 4 }, () => activeProjectDetails.cardImage)
+                    }
+                    playing={open && !previewImage}
+                    onPreviewImage={openPreview}
+                  />
+                </div>
               </div>
               <CaseStudyCoverMeta
                 action={activeProjectDetails.caseStudyAction}
@@ -197,7 +212,7 @@ function CaseStudyPanel({
                 <CaseStudySection
                   key={section.id}
                   section={section}
-                  onPreviewImage={setPreviewImage}
+                  onPreviewImage={openPreview}
                 />
               ))
             : null}
@@ -216,6 +231,7 @@ function CaseStudyPanel({
                     key={projectName}
                     projectName={projectName}
                     onOpen={() => onOpenProject(projectName)}
+                    short={(COMPACT_PROJECT_NAMES as readonly ProjectName[]).includes(projectName)}
                   />
                 ))}
               </div>
@@ -237,7 +253,8 @@ function CaseStudyPanel({
         <section
           role="dialog"
           aria-modal="true"
-          aria-label="Expanded impact image"
+          aria-label="Expanded project image"
+          aria-describedby="expanded-image-caption"
           className="fixed inset-0 z-50 flex items-center justify-center p-6 min-[785px]:p-12"
         >
           <button
@@ -245,24 +262,30 @@ function CaseStudyPanel({
             aria-label="Close expanded image"
             tabIndex={-1}
             className="absolute inset-0 cursor-pointer bg-[#111111]/90"
-            onClick={() => setPreviewImage(null)}
+            onClick={closePreview}
           />
-          <div className="relative z-10 max-h-full max-w-full scale-90">
+          <figure className="relative z-10 flex max-h-full max-w-full scale-90 flex-col items-center gap-3">
             <img
               src={previewImage.src}
               alt={previewImage.alt}
-              className="block max-h-[calc(100vh-3rem)] max-w-full rounded-md object-contain min-[785px]:max-h-[calc(100vh-6rem)]"
+              className="block min-h-0 max-h-[calc(100vh-10rem)] max-w-full rounded-md object-contain"
             />
+            <figcaption
+              id="expanded-image-caption"
+              className="max-w-2xl text-center text-sm leading-5 text-white"
+            >
+              {previewImage.caption}
+            </figcaption>
             <button
               type="button"
               ref={previewCloseButtonRef}
               aria-label="Close expanded image"
               className="absolute right-3 top-3 flex size-9 cursor-pointer items-center justify-center rounded-full bg-[#1e1e1e]/90 text-white transition-colors hover:bg-[#252526] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-              onClick={() => setPreviewImage(null)}
+              onClick={closePreview}
             >
               <FiX className="size-5" />
             </button>
-          </div>
+          </figure>
         </section>
       ) : null}
     </>
@@ -276,7 +299,7 @@ function CaseStudySection({
   onPreviewImage,
 }: {
   section: CaseStudySectionData;
-  onPreviewImage: (image: { src: string; alt: string }) => void;
+  onPreviewImage: (image: ProjectImage) => void;
 }) {
   switch (section.type) {
     case "split":
@@ -393,7 +416,7 @@ function CaseStudyParagraph({
   onPreviewImage,
 }: {
   paragraph: CaseStudyParagraph;
-  onPreviewImage: (image: { src: string; alt: string }) => void;
+  onPreviewImage: (image: ProjectImage) => void;
 }) {
   return (
     <p className="leading-7 text-gray-300">
