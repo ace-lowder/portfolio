@@ -1,19 +1,30 @@
-import { normal, paragraph, type CaseStudy } from "../caseStudy";
+import { contentSection, normal, paragraph, type CaseStudy } from "../caseStudy";
 
 export const reelreadsCaseStudy: CaseStudy = {
   sections: [
-    {
-      id: "summary",
-      type: "content",
-      paragraphs: [
-        paragraph(
-          normal(
-            "Reelreads is a landing site I built for a local book club concept centered on reading a book, watching its movie adaptation, and discussing both. I designed the site around a simple poster-driven layout inspired by Letterboxd, adapting that interaction style for books and films across desktop and mobile. The site includes responsive card interactions and a server-side newsletter signup flow that validates submissions, filters basic bots, and adds subscribers to MailerLite. It’s currently a concept project, but I built and launched the full experience so it’s ready to use if I restart the club.",
-          ),
-        ),
-      ],
-      bullets: [],
-      image: null,
-    },
+    contentSection(
+      "Overview",
+      paragraph(normal("Reelreads is a landing site for a book club concept built around reading a book, watching its film adaptation, and discussing both.")),
+    ),
+    contentSection(
+      "Problem",
+      paragraph(normal("The concept needed a clear way to present its book-and-film format and collect interest through a newsletter signup.")),
+    ),
+    contentSection(
+      "My Role",
+      paragraph(normal("I designed and built the site, including the visual direction, responsive interactions, and newsletter flow.")),
+    ),
+    contentSection(
+      "Implementation",
+      paragraph(normal("The poster-driven layout adapts a film-discovery style to books and movies. The server-side signup validates submissions, filters basic bots, and adds subscribers to MailerLite.")),
+    ),
+    contentSection(
+      "Challenges",
+      paragraph(normal("The visual concept had to work across desktop and mobile while keeping the signup flow functional beyond the landing page itself.")),
+    ),
+    contentSection(
+      "Results",
+      paragraph(normal("I launched the complete site, but Reelreads remains a concept project rather than an active book club. The site is ready to use if I restart it.")),
+    ),
   ],
 };
